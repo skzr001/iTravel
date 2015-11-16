@@ -588,21 +588,16 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		//设置坐标点
 		aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f).icon(BitmapDescriptorFactory.fromAsset("1.png"))
 				.position(new LatLng(26.051212,119.192369)).title("电脑之家")
-				/*.snippet("电脑之家")*/.draggable(true));
+				.draggable(true));
 		aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f).icon(BitmapDescriptorFactory.fromAsset("1.png"))
 				.position(new LatLng(26.051000,119.192000)).title("木叶忍者村")
-				/*.snippet("电脑之家")*/.draggable(true));
-	/*	aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f)
-				.position(new LatLng(26.05393,119.18717)).title("成都市")
-				.snippet("成都市:30.679879, 104.064855").draggable(true));
-		 markeroption = new MarkerOptions();*/
-		//设置坐标点
-		 //markeroption.position(new LatLng(26, 119));
-		// aMap.addMarker(markeroption);
-		/* LatLng marker1 = new LatLng(39.24426, 100.18322);
-		 aMap.addMarker(new MarkerOptions().position(marker1).title("Marker1 ")  
-		         .icon(BitmapDescriptorFactory  
-		         .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).draggable(true));*/ 
+				.draggable(true));
+		aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f).icon(BitmapDescriptorFactory.fromAsset("1.png"))
+				.position(new LatLng(26.051000,119.192000)).title("木叶忍者村")
+				.draggable(true));
+		aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f).icon(BitmapDescriptorFactory.fromAsset("1.png"))
+				.position(new LatLng(26.051000,119.192000)).title("木叶忍者村")
+				.draggable(true));
 		}
 	public void onMapLoaded() {
 		// TODO Auto-generated method stub
