@@ -563,40 +563,125 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	//
 	
 	private void addMarkersToMap() {
-		
-		//肖阳_在定位界面固定地理围栏-------------------------------------------------------------------------------------
-   	 	LatLng latLng = new LatLng(26.051212,119.192369);//新建一个位置 　不知是否会对后面的latLng造成影响
+   	 	LatLng latLng = new LatLng(26.05124,119.19283);
 		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 100, 1000 * 60 * 30, mPendingIntent);//添加一个地理围栏	
-		// 将地理围栏添加到地图上显示
+				latLng.longitude, 100, 1000 * 60 * 30, mPendingIntent);	
 		CircleOptions circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)//将参数1000改为了10
+		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 100))
 				.strokeColor(Color.RED);
 		mCircle = aMap.addCircle(circleOptions);
 		
-		latLng = new LatLng(26.051000,119.192000);//新建一个位置 　不知是否会对后面的latLng造成影响
+		latLng = new LatLng(26.050908,119.19187);
 		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);//添加一个地理围栏	
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)//将参数1000改为了10
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.050932,119.191784);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.05182,119.191677);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.052002,119.191704);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.052103,119.191725);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.052171,119.191816);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+				
+		latLng = new LatLng(26.052171,119.191913);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.052195,119.192122);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.051906,119.191682);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.051067,119.192433);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.051241,119.191629);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
 				.strokeColor(Color.RED);
 		mCircle = aMap.addCircle(circleOptions);
 		
 		MarkerOptions option = new MarkerOptions();
 		//设置坐标点
-		
-
-		addMarker(26.051246,119.19283,"电脑之家","1.png");
-		addMarker(26.050908,119.19187,"千艺美发","1.png");
-		addMarker(26.050932,119.191784,"清卟茶园","1.png");
-		addMarker(26.051824,119.191677,"花样年华","1.png");
-		addMarker(26.052002,119.191704,"圆通快递点","1.png");
-		addMarker(26.052103,119.191725,"意祥驾校","1.png");
-		addMarker(26.052171,119.191816,"知发者","1.png");
-		addMarker(26.052171,119.191913,"小春花屋","1.png");
-		addMarker(26.052195,119.192122,"福伯烧仙草","1.png");
+		addMarker(26.051246,119.19283,"电脑之家","1.png");//
+		addMarker(26.050908,119.19187,"千艺美发","1.png");//
+		addMarker(26.050932,119.191784,"清卟茶园","1.png");//
+		addMarker(26.051824,119.191677,"花样年华","1.png");//
+		addMarker(26.052002,119.191704,"圆通快递点","1.png");//
+		addMarker(26.052103,119.191725,"意祥驾校","1.png");//
+		addMarker(26.052171,119.191816,"知发者","1.png");//
+		addMarker(26.052171,119.191913,"小春花屋","1.png");//
+		addMarker(26.052195,119.192122,"福伯烧仙草","1.png");//
 		}
 	public void addMarker(double a,double b,String title,String picture){
 		aMap.addMarker(new MarkerOptions().anchor(0.1f, 0.9f).icon(BitmapDescriptorFactory.fromAsset(picture))
@@ -739,21 +824,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 
 	@Override
 	public void onMapClick(LatLng latLng) {
-//		//肖阳_改动的时候注意radius，在addGeoFenceAlert和下面的center里都要改radius，后者是与显示相关。
-//		mLocationManagerProxy.removeGeoFenceAlert(mPendingIntent);
-//		if (mCircle != null) {
-//			mCircle.remove();
-//		}
-//		// 设置地理围栏，位置、半径、超时时间、处理事件
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		// 将地理围栏添加到地图上显示
-//		CircleOptions circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)//将参数1000改为了10
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//
+		// TODO Auto-generated method stub
 	}
 
 
