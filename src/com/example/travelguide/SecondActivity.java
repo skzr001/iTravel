@@ -696,7 +696,24 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		                                .include(southwest).build();
 	}
 	public boolean onMarkerClick(final Marker marker) {
+		if(marker.getTitle().equals("电脑之家"))
 		markerText.setText("这里是" + marker.getTitle()+"经营一些电脑有关的产品，比如鼠标，以及维修电脑。");
+		if(marker.getTitle().equals("千艺美发"))
+			markerText.setText("千亿美发，剪发便宜又实惠。");
+		if(marker.getTitle().equals("清卟茶园"))
+			markerText.setText("清卟茶园，小型聚会的好去处，提供各类牌类游戏哦");
+		if(marker.getTitle().equals("花样年华"))
+			markerText.setText("干什么的来着？");
+		if(marker.getTitle().equals("圆通快递点"))
+			markerText.setText("如题咯，圆通快递点。");
+		if(marker.getTitle().equals("意祥驾校"))
+			markerText.setText("福大周边的一家驾校的报名点。");
+		if(marker.getTitle().equals("知发者"))
+			markerText.setText("据说有点坑的理发店。");
+		if(marker.getTitle().equals("小春花屋"))
+			markerText.setText("一家主要出售各类小型绿色盆栽的小店。");
+		if(marker.getTitle().equals("福伯烧仙草"))
+			markerText.setText("福大周边的一家烧仙草。");
 		return false;
 	}
 	private void updateLocation(double latitude, double longtitude) {
