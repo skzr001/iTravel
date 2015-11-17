@@ -586,24 +586,23 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		
 		MarkerOptions option = new MarkerOptions();
 		//设置坐标点
-		aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f).icon(BitmapDescriptorFactory.fromAsset("1.png"))
-				.position(new LatLng(26.051212,119.192369)).title("电脑之家")
-				/*.snippet("电脑之家")*/.draggable(true));
-		aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f).icon(BitmapDescriptorFactory.fromAsset("1.png"))
-				.position(new LatLng(26.051000,119.192000)).title("木叶忍者村")
-				/*.snippet("电脑之家")*/.draggable(true));
-	/*	aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f)
-				.position(new LatLng(26.05393,119.18717)).title("成都市")
-				.snippet("成都市:30.679879, 104.064855").draggable(true));
-		 markeroption = new MarkerOptions();*/
-		//设置坐标点
-		 //markeroption.position(new LatLng(26, 119));
-		// aMap.addMarker(markeroption);
-		/* LatLng marker1 = new LatLng(39.24426, 100.18322);
-		 aMap.addMarker(new MarkerOptions().position(marker1).title("Marker1 ")  
-		         .icon(BitmapDescriptorFactory  
-		         .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).draggable(true));*/ 
+		
+
+		addMarker(26.051246,119.19283,"电脑之家","1.png");
+		addMarker(26.050908,119.19187,"千艺美发","1.png");
+		addMarker(26.050932,119.191784,"清卟茶园","1.png");
+		addMarker(26.051824,119.191677,"花样年华","1.png");
+		addMarker(26.052002,119.191704,"圆通快递点","1.png");
+		addMarker(26.052103,119.191725,"意祥驾校","1.png");
+		addMarker(26.052171,119.191816,"知发者","1.png");
+		addMarker(26.052171,119.191913,"小春花屋","1.png");
+		addMarker(26.052195,119.192122,"福伯烧仙草","1.png");
 		}
+	public void addMarker(double a,double b,String title,String picture){
+		aMap.addMarker(new MarkerOptions().anchor(0.1f, 0.9f).icon(BitmapDescriptorFactory.fromAsset(picture))
+				.position(new LatLng(a,b)).title(title)
+				.draggable(true));
+	}
 	public void onMapLoaded() {
 		// TODO Auto-generated method stub
 		LatLng northeast = new LatLng(30,130 );
