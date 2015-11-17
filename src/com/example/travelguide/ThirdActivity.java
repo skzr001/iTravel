@@ -30,10 +30,18 @@ public class ThirdActivity extends Activity {
         data_list = new ArrayList<String>();
         
         data_list.add("清卜茶园");
-        data_list.add("圆通");
+
         data_list.add("速跑");
         data_list.add("意祥驾校");
-        
+        data_list.add("电脑之家");
+        data_list.add("千艺美发");
+        data_list.add("花样年华");
+        data_list.add("知发者");
+        data_list.add("小春花屋");
+        data_list.add("福伯烧仙草");
+        data_list.add("万家");
+        data_list.add("冰凌城下");
+        data_list.add("圆通快递点");
         
         
         //适配器
@@ -48,9 +56,20 @@ public class ThirdActivity extends Activity {
         data_list = new ArrayList<String>();
         
         data_list.add("清卜茶园");
-        data_list.add("圆通");
+
         data_list.add("速跑");
         data_list.add("意祥驾校");
+        data_list.add("电脑之家");
+        data_list.add("千艺美发");
+        data_list.add("花样年华");
+        data_list.add("知发者");
+        data_list.add("小春花屋");
+        data_list.add("福伯烧仙草");
+        data_list.add("万家");
+        data_list.add("冰凌城下");
+        data_list.add("圆通快递点");
+        
+       
         
         
         
@@ -73,12 +92,38 @@ public class ThirdActivity extends Activity {
 //				速跑     26.05502  119.18683
 //				圆通    26.05500   119.186838
 //				意祥驾校    26.05502    119.18705
-//				清卜茶园    26.05383    119.18704
+//				清卜茶园    26.05383    119.18704	
+//				速跑  26.051906，119.191682/
+//				万家 26.051067，119.192433/
+//				冰凌城下 26.051241，119.191629
+
+//				addMarker(26.051246,119.19283,"电脑之家","1.png");//
+//				addMarker(26.050908,119.19187,"千艺美发","1.png");//
+//				addMarker(26.050932,119.191784,"清卟茶园","1.png");//
+//				addMarker(26.051824,119.191677,"花样年华","1.png");//
+//				addMarker(26.052002,119.191704,"圆通快递点","1.png");//
+//				addMarker(26.052103,119.191725,"意祥驾校","1.png");//
+//				addMarker(26.052171,119.191816,"知发者","1.png");//
+//				addMarker(26.052171,119.191913,"小春花屋","1.png");//
+//				addMarker(26.052195,119.192122,"福伯烧仙草","1.png");//
+//				
+//				万家 26.051067，119.192433
+//				冰凌城下 26.051241，119.191629
+
 				
 				String s1 = "速跑";
-				String s2 = "圆通";
+				String s2 = "圆通快递点";
 				String s3 = "意祥驾校";
 				String s4 = "清卜茶园";
+				String s5 = "电脑之家";
+				String s6 = "千艺美发";
+				String s7 = "花样年华";
+				String s8 = "知发者";
+				String s9 = "小春花屋";
+				String s10 = "福伯烧仙草";
+				String s11= "万家";
+				String s12= "冰凌城下";
+
 				
 				
 				int a=0,b=0;
@@ -98,6 +143,38 @@ public class ThirdActivity extends Activity {
 				else if(text1.equals(s4))
 				{
 					a=4;
+				}
+				else if(text1.equals(s5))
+				{
+					a=5;
+				}
+				else if(text1.equals(s6))
+				{
+					a=6;
+				}
+				else if(text1.equals(s7))
+				{
+					a=7;
+				}
+				else if(text1.equals(s8))
+				{
+					a=8;
+				}
+				else if(text1.equals(s9))
+				{
+					a=9;
+				}
+				else if(text1.equals(s10))
+				{
+					a=10;
+				}
+				else if(text1.equals(s11))
+				{
+					a=11;
+				}
+				else if(text1.equals(s12))
+				{
+					a=12;
 				}
 				else if(text1.length() == 0)
 				{
@@ -121,6 +198,39 @@ public class ThirdActivity extends Activity {
 				{
 					b=4;
 				}
+				else if(text2.equals(s5))
+				{
+					b=5;
+				}
+				else if(text2.equals(s6))
+				{
+					b=6;
+				}
+				else if(text2.equals(s7))
+				{
+					b=7;
+				}
+				else if(text2.equals(s8))
+				{
+					b=8;
+				}
+				else if(text2.equals(s9))
+				{
+					b=9;
+				}
+				else if(text2.equals(s10))
+				{
+					b=10;
+				}
+				else if(text2.equals(s11))
+				{
+					b=11;
+				}
+				else if(text2.equals(s12))
+				{
+					b=12;
+				}
+
 				
 				
 				/* 新建一个Intent对象 */
@@ -131,8 +241,7 @@ public class ThirdActivity extends Activity {
 		        intent.setClass(ThirdActivity.this, SecondActivity.class);
 		        /* 启动一个新的Activity */
 		        ThirdActivity.this.startActivity(intent);
-		        /* 关闭当前的Activity */
-		        ThirdActivity.this.finish();
+
 		        
 				
 			}
