@@ -286,11 +286,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		IntentFilter fliter = new IntentFilter(
 				ConnectivityManager.CONNECTIVITY_ACTION);
 		fliter.addAction(GEOFENCE_BROADCAST_ACTION);
-		
 		registerReceiver(mGeoFenceReceiver, fliter);
-
 		mLocationManagerProxy = LocationManagerProxy.getInstance(this);
-
 		Intent intent = new Intent(GEOFENCE_BROADCAST_ACTION);
 		mPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0,
 				intent, 0);
@@ -300,10 +297,10 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		// 在定位结束后，在合适的生命周期调用destroy()方法
 		// 其中如果间隔时间为-1，则定位只定一次
 		//在单次定位情况下，定位无论成功与否，都无需调用removeUpdates()方法移除请求，定位sdk内部会移除
+		
 		mLocationManagerProxy.requestLocationData(
 				LocationProviderProxy.AMapNetwork		 
 				, 2000, 15, this);
-
 		MarkerOptions markOptions = new MarkerOptions();
 		markOptions.icon(
 				BitmapDescriptorFactory.fromBitmap(BitmapFactory
@@ -311,7 +308,6 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 								R.drawable.icon)))
 				.anchor(0.5f, 0.5f);
 		mGPSMarker = aMap.addMarker(markOptions);
-
 		aMap.setOnMapClickListener(this);
     }
 	
@@ -563,9 +559,9 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	//
 	
 	private void addMarkersToMap() {
-   	 	LatLng latLng = new LatLng(26.05124,119.19283);
+   	 	LatLng latLng = new LatLng(26.05124,119.19283);//电脑之家
 		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 100, 1000 * 60 * 30, mPendingIntent);	
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);	
 		CircleOptions circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 100))
@@ -670,6 +666,16 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 				.fillColor(Color.argb(180, 224, 171, 10))
 				.strokeColor(Color.RED);
 		mCircle = aMap.addCircle(circleOptions);
+		
+						/*福大B区*/
+		latLng = new LatLng(26.051125,119.192069);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 170, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(170)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);//福大三区
 		
 		MarkerOptions option = new MarkerOptions();
 		//设置坐标点
