@@ -364,7 +364,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 					   intent.setClass(SecondActivity.this,ThirdActivity.class);
 					  // intent.setClass(SecondActivity.this,ThirdActivity.class);
 					   startActivity(intent);
-					   //finish();
+					   finish();
 				}
 		});
 		

@@ -44,8 +44,8 @@ public final class R {
         public static final int searchText=0x7f080003;
         public static final int spinnerfirst=0x7f080002;
         public static final int spinnerthird1=0x7f08000a;
-        public static final int spinnerthird2=0x7f08000e;
-        public static final int text1=0x7f08000d;
+        public static final int spinnerthird2=0x7f08000d;
+        public static final int text1=0x7f08000e;
         public static final int text2=0x7f08000b;
     }
     public static final class layout {
