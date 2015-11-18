@@ -95,10 +95,13 @@ public class SecondActivity extends Activity implements  LocationSource, AMapLoc
 OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearchListener,AMapNaviListener {
 
 	
+	private int LocationFuda=0;
+	
+	
 	private AMapNavi mAMapNavi;
 
 	// 起点终点坐标
-	private double mm,nn;
+	private double mm=0,nn=0;
 	private NaviLatLng mNaviStart = new NaviLatLng(26.051000,119.192000);
 	private NaviLatLng mNaviEnd = new NaviLatLng(26.051212,119.192369);
 	// 起点终点列表
@@ -124,7 +127,6 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	private ProgressDialog progDialog = null;// 搜索时进度条
 	private EditText editCity;// 要输入的城市名字或者城市区号
 	private PoiResult poiResult; // poi返回的结果
-	private int currentPage = 0;// 当前页面，从0开始计数
 	private PoiSearch.Query query;// Poi查询条件类
 	private PoiSearch poiSearch;// POI搜索
     //
@@ -154,69 +156,183 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //        String name = bundle.getString("name");       //获取Intent的内容name
         int numb1=0;
         int numb2=0;
+        
         numb1 = bundle.getInt("number1");               //获取Intent的内容age
         numb2 = bundle.getInt("number2");               //获取Intent的内容age
 		
 		if(numb1!=0 &&numb2!=0)
 		{
-			double m1=26.051000,m2=119.192000;
-			double n1=26.051212,n2=119.192369;
 			
+			double m1=0,n1=0,m2=0,n2=0;
 
 			
 //			速跑     26.05502  119.18683
 //			圆通    26.05500   119.186838
 //			意祥驾校    26.05502    119.18705
-//			清卜茶园    26.05383    119.18704
+//			清卜茶园    26.05383    119.18704	
+//			addMarker(26.051246,119.19283,"电脑之家","1.png");//
+//			addMarker(26.050908,119.19187,"千艺美发","1.png");//
+//			addMarker(26.050932,119.191784,"清卟茶园","1.png");//
+//			addMarker(26.051824,119.191677,"花样年华","1.png");//
+//			addMarker(26.052002,119.191704,"圆通快递点","1.png");//
+//			addMarker(26.052103,119.191725,"意祥驾校","1.png");//
+//			addMarker(26.052171,119.191816,"知发者","1.png");//
+//			addMarker(26.052171,119.191913,"小春花屋","1.png");//
+//			addMarker(26.052195,119.192122,"福伯烧仙草","1.png");//	
+//			万家 26.051067，119.192433
+//			冰凌城下 26.051241，119.191629
+
+			
+//			String s1 = "速跑";
+//			String s2 = "圆通";
+//			String s3 = "意祥驾校";
+//			String s4 = "清卜茶园";
+//			String s5 = "电脑之家";
+//			String s6 = "千艺美发";
+//			String s7 = "花样年华";
+//			String s8 = "知发者";
+//			String s9 = "小春花屋";
+//			String s10 = "福伯烧仙草";
+//			String s11= "万家";
+//			String s12= "冰凌城下";
+//			String s13= "圆通快递点";
 
 			//起始地点确认
 			if(numb1==1)  
 			{
-				m1=26.05502;
-				m2=119.18683;
+				m1=26.051906;
+				m2=119.191682;
 			}
 			else if(numb1==2)  
 			{
-				m1=26.05500;
-				m2=119.186838;
+				m1=26.052002;
+				m2=119.191704;
 			}
 			else if(numb1==3)  
 			{
-				m1= 26.05502;
-				m2=119.18705;
+				m1= 26.052103;
+				m2=119.191725;
 			}
 			else if(numb1==4)  
 			{
-				m1=26.05383;
-				m2=119.18704;
+				m1=26.050932;
+				m2=119.191784;
 			}
+			else if(numb1==5)  
+			{
+				m1=26.051246;
+				m2=119.19283;
+			}
+			else if(numb1==6)  
+			{
+				m1=26.050908;
+				m2=119.19187;
+			}
+			else if(numb1==7)  
+			{
+				m1=26.051824;
+				m2=119.191677;
+			}
+			else if(numb1==8)  
+			{
+				m1=26.052171;
+				m2=119.191816;
+			}
+			else if(numb1==9)  
+			{
+				m1=26.052171;
+				m2=119.191913;
+			}
+			else if(numb1==10)  
+			{
+				m1=26.052195;
+				m2=119.192122;
+			}
+			else if(numb1==11)  
+			{
+				m1=26.051067;
+				m2=119.192433;
+			}
+			else if(numb1==12)  
+			{
+				m1=26.051241;
+				m2=119.191629;
+			}
+			
+			
 			else if(numb1==100)  
 			{
+				mm = bundle.getDouble("number3");               //获取Intent的内容age
+		        nn = bundle.getDouble("number4");               //获取Intent的内容age
 				m1=mm;
 				m2=nn;
+				
 			}
+			
+			
 			
 			//终止地点确认
 			if(numb2==1)  
 			{
-				n1=26.05502;
-				n2=119.18683;
+				n1=26.051906;
+				n2=119.191682;
 			}
 			else if(numb2==2)  
 			{
-				n1=26.05500;
-				n2=119.186838;
+				n1=26.052002;
+				n2=119.191704;
 			}
 			else if(numb2==3)  
 			{
-				n1= 26.05502;
-				n2=119.18705;
+				n1=26.052103;
+				n2=119.191725;
 			}
 			else if(numb2==4)  
 			{
-				n1=26.05383;
-				n2=119.18704;
+				n1=26.050932;
+				n2=119.191784;
 			}
+			else if(numb2==5)  
+			{
+				n1=26.051246;
+				n2=119.19283;
+			}
+			else if(numb2==6)  
+			{
+				n1=26.050908;
+				n2=119.19187;
+			}
+			else if(numb2==7)  
+			{
+				n1=26.051824;
+				n2=119.191677;
+			}
+			else if(numb2==8)  
+			{
+				n1=26.052171;
+				n2=119.191816;
+			}
+			else if(numb2==9)  
+			{
+				n1=26.052171;
+				n2=119.191913;
+			}
+			else if(numb2==10)  
+			{
+				n1=26.052195;
+				n2=119.192122;
+			}
+			else if(numb2==11)  
+			{
+				n1=26.051067;
+				n2=119.192433;
+			}
+			else if(numb2==12)  
+			{
+				n1=26.051241;
+				n2=119.191629;
+			}
+			
 			
 			
 			mNaviStart = new NaviLatLng(m1,m2);
@@ -240,13 +356,26 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	    Button btn = (Button)findViewById(R.id.button1);
 		btn.setOnClickListener(new OnClickListener() {
 		public void onClick(View v) {
-					
-					   Intent intent = new Intent(SecondActivity.this,ThirdActivity.class);
+			           Intent intent = new Intent();
+			           intent.putExtra("dangqian1",mm);    
+		               intent.putExtra("dangqian2",nn);
+					   intent.setClass(SecondActivity.this,ThirdActivity.class);
 					  // intent.setClass(SecondActivity.this,ThirdActivity.class);
 					   startActivity(intent);
 					   //finish();
 				}
 		});
+		
+		//定位按钮自定义
+		 Button btn2 = (Button)findViewById(R.id.LocationButton);
+			btn2.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+						
+				mLocationManagerProxy.requestLocationData(LocationProviderProxy.AMapNetwork,  -1, 10, SecondActivity.this);
+				
+//				showToast("mm="+mm+"  nn="+nn);
+				}
+			});
 	}
 
     
@@ -257,7 +386,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		}
 	}
 	private void showToast(String message) {
-		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+		ToastUtil.show(SecondActivity.this, message);
 	}
     
     
@@ -286,11 +415,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		IntentFilter fliter = new IntentFilter(
 				ConnectivityManager.CONNECTIVITY_ACTION);
 		fliter.addAction(GEOFENCE_BROADCAST_ACTION);
-		
 		registerReceiver(mGeoFenceReceiver, fliter);
-
 		mLocationManagerProxy = LocationManagerProxy.getInstance(this);
-
 		Intent intent = new Intent(GEOFENCE_BROADCAST_ACTION);
 		mPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0,
 				intent, 0);
@@ -300,9 +426,16 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		// 在定位结束后，在合适的生命周期调用destroy()方法
 		// 其中如果间隔时间为-1，则定位只定一次
 		//在单次定位情况下，定位无论成功与否，都无需调用removeUpdates()方法移除请求，定位sdk内部会移除
-		mLocationManagerProxy.requestLocationData(
-				LocationProviderProxy.AMapNetwork		 
-				, 2000, 15, this);
+
+		
+//		mLocationManagerProxy.requestLocationData(
+//				LocationProviderProxy.AMapNetwork		 
+//				, 2000, 15, this);
+
+//		mLocationManagerProxy.requestLocationData(
+//				LocationProviderProxy.AMapNetwork		 
+//				, 2000, 15, this);
+
 
 		MarkerOptions markOptions = new MarkerOptions();
 		markOptions.icon(
@@ -311,7 +444,6 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 								R.drawable.icon)))
 				.anchor(0.5f, 0.5f);
 		mGPSMarker = aMap.addMarker(markOptions);
-
 		aMap.setOnMapClickListener(this);
     }
 	
@@ -327,11 +459,9 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
                 // 根据广播的status来确定是在区域内还是在区域外
                 int status = bundle.getInt("status");
                 if (status == 0) {
-                    Toast.makeText(getApplicationContext(), "不在区域",
-                            Toast.LENGTH_SHORT).show();
+                	ToastUtil.show(SecondActivity.this, "不在区域内");
                 } else {
-                    Toast.makeText(getApplicationContext(), "在区域内",
-                            Toast.LENGTH_SHORT).show();
+                	ToastUtil.show(SecondActivity.this, "在区域内");
                 }
  
             }
@@ -340,12 +470,12 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 
 	private void setUpMap() {
         aMap.setLocationSource(this);// 设置定位监听
-        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
+        aMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         aMap.setMyLocationType(AMap.LOCATION_TYPE_MAP_FOLLOW);
         aMap.setOnMapLoadedListener(this);
         aMap.setOnMarkerClickListener(this);
-        aMap.moveCamera(CameraUpdateFactory.zoomTo(19));
+//        aMap.moveCamera(CameraUpdateFactory.zoomTo(20));
         addMarkersToMap();
         //
     	Button searButton = (Button) findViewById(R.id.searchButton);
@@ -353,7 +483,6 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		
 		searchText = (AutoCompleteTextView) findViewById(R.id.keyWord);
 		searchText.addTextChangedListener(this);// 添加文本输入框监听事件
-		editCity = (EditText) findViewById(R.id.city);
 		aMap.setOnMarkerClickListener(this);// 添加点击marker监听事件
 		aMap.setInfoWindowAdapter(this);// 添加显示infowindow监听事件
     	//
@@ -393,11 +522,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	 */
 	protected void doSearchQuery() {
 		showProgressDialog();// 显示进度框
-		currentPage = 0;
-		query = new PoiSearch.Query(keyWord, "", editCity.getText().toString());// 第一个参数表示搜索字符串，第二个参数表示poi搜索类型，第三个参数表示poi搜索区域（空字符串代表全国）
-		query.setPageSize(10);// 设置每页最多返回多少条poiitem
-		query.setPageNum(currentPage);// 设置查第一页
 
+		query = new PoiSearch.Query(keyWord, "", "福州");// 第一个参数表示搜索字符串，第二个参数表示poi搜索类型，第三个参数表示poi搜索区域（空字符串代表全国）
 		poiSearch = new PoiSearch(this, query);
 		poiSearch.setOnPoiSearchListener(this);
 		poiSearch.searchPOIAsyn();
@@ -446,20 +572,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		return applicationName;
 	}
 
-	/**
-	 * poi没有搜索到数据，返回一些推荐城市的信息
-	 */
-	private void showSuggestCity(List<SuggestionCity> cities) {
-		String infomation = "推荐城市\n";
-		for (int i = 0; i < cities.size(); i++) {
-			infomation += "城市名称:" + cities.get(i).getCityName() + "城市区号:"
-					+ cities.get(i).getCityCode() + "城市编码:"
-					+ cities.get(i).getAdCode() + "\n";
-		}
-		ToastUtil.show(SecondActivity.this, infomation);
-
-	}
-
+	
 	
 
 	
@@ -486,7 +599,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 					}
 				});
 		try {
-			inputTips.requestInputtips(newText,  editCity.getText().toString());// 第一个参数表示提示关键字，第二个参数默认代表全国，也可以为城市区号
+			inputTips.requestInputtips(newText,  "福州");// 第一个参数表示提示关键字，第二个参数默认代表全国，也可以为城市区号
 
 		} catch (AMapException e) {
 			e.printStackTrace();
@@ -517,9 +630,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 						poiOverlay.removeFromMap();
 						poiOverlay.addToMap();
 						poiOverlay.zoomToSpan();
-					} else if (suggestionCities != null
-							&& suggestionCities.size() > 0) {
-						showSuggestCity(suggestionCities);
+				
 					} else {
 						ToastUtil.show(SecondActivity.this,
 								R.string.no_result);
@@ -552,9 +663,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		case R.id.searchButton:
 			searchButton();
 			break;
-		/**
-		 * 点击下一页按钮
-		 */
+		
 		
 		default:
 			break;
@@ -563,9 +672,9 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	//
 	
 	private void addMarkersToMap() {
-   	 	LatLng latLng = new LatLng(26.05124,119.19283);
+   	 	LatLng latLng = new LatLng(26.05124,119.19283);//电脑之家
 		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 100, 1000 * 60 * 30, mPendingIntent);	
+				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);	
 		CircleOptions circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 100))
@@ -671,6 +780,16 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 				.strokeColor(Color.RED);
 		mCircle = aMap.addCircle(circleOptions);
 		
+						/*福大B区*/
+		latLng = new LatLng(26.051125,119.192069);
+		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+				latLng.longitude, 170, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(170)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);//福大三区
+		
 		MarkerOptions option = new MarkerOptions();
 		//设置坐标点
 		addMarker(26.051246,119.19283,"电脑之家","2.png",0.1f,0.5f);//
@@ -758,11 +877,22 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             	 mm=amapLocation.getLatitude();
             	 nn=amapLocation.getLongitude();
             	 
+            	 LatLng Fuda=new LatLng(26.050908,119.19187);
+//     			addMarker(26.050908,119.19187,"千艺美发","1.png");//
+            	 
+            	 if(LocationFuda==0)
+            	 {
+            		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fuda,18));
+            		 showToast("请进入景区再进行定位");
+            		
+            	 }
+            	 else{
+            	 
                  // 定位成功后把地图移动到当前可视区域内
-            	 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,20));
+            	 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
 
                 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
-                
+            	 }
             }
         }
     }
@@ -779,7 +909,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             //在定位结束后，在合适的生命周期调用destroy()方法     
             //其中如果间隔时间为-1，则定位只定一次
         	mLocationManagerProxy.requestLocationData(
-                    LocationProviderProxy.AMapNetwork, 60*1000, 10, this);
+                    LocationProviderProxy.AMapNetwork, -1, 10, this);
         }
     }
     /**
