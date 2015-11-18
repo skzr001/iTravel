@@ -98,7 +98,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	private AMapNavi mAMapNavi;
 
 	// 起点终点坐标
-	private double mm,nn;
+	private double mm=0,nn=0;
 	private NaviLatLng mNaviStart = new NaviLatLng(26.051000,119.192000);
 	private NaviLatLng mNaviEnd = new NaviLatLng(26.051212,119.192369);
 	// 起点终点列表
@@ -124,7 +124,6 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	private ProgressDialog progDialog = null;// 搜索时进度条
 	private EditText editCity;// 要输入的城市名字或者城市区号
 	private PoiResult poiResult; // poi返回的结果
-	private int currentPage = 0;// 当前页面，从0开始计数
 	private PoiSearch.Query query;// Poi查询条件类
 	private PoiSearch poiSearch;// POI搜索
     //
@@ -154,14 +153,14 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //        String name = bundle.getString("name");       //获取Intent的内容name
         int numb1=0;
         int numb2=0;
+        
         numb1 = bundle.getInt("number1");               //获取Intent的内容age
         numb2 = bundle.getInt("number2");               //获取Intent的内容age
 		
 		if(numb1!=0 &&numb2!=0)
 		{
-			double m1=26.051000,m2=119.192000;
-			double n1=26.051212,n2=119.192369;
 			
+			double m1=0,n1=0,m2=0,n2=0;
 
 			
 //			速跑     26.05502  119.18683
@@ -256,16 +255,15 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 				m1=26.051241;
 				m2=119.191629;
 			}
-			else if(numb1==13)  
-			{
-				m1=26.052002;
-				m2=119.191704;
-			}
+			
 			
 			else if(numb1==100)  
 			{
+				mm = bundle.getDouble("number3");               //获取Intent的内容age
+		        nn = bundle.getDouble("number4");               //获取Intent的内容age
 				m1=mm;
 				m2=nn;
+				
 			}
 			
 			
@@ -331,11 +329,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 				n1=26.051241;
 				n2=119.191629;
 			}
-			else if(numb2==13)  
-			{
-				n1=26.052002;
-				n2=119.191704;
-			}
+			
 			
 			
 			mNaviStart = new NaviLatLng(m1,m2);
@@ -359,8 +353,10 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	    Button btn = (Button)findViewById(R.id.button1);
 		btn.setOnClickListener(new OnClickListener() {
 		public void onClick(View v) {
-					
-					   Intent intent = new Intent(SecondActivity.this,ThirdActivity.class);
+			           Intent intent = new Intent();
+			           intent.putExtra("dangqian1",mm);    
+		               intent.putExtra("dangqian2",nn);
+					   intent.setClass(SecondActivity.this,ThirdActivity.class);
 					  // intent.setClass(SecondActivity.this,ThirdActivity.class);
 					   startActivity(intent);
 					   //finish();
@@ -376,7 +372,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		}
 	}
 	private void showToast(String message) {
-		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+		ToastUtil.show(SecondActivity.this, message);
 	}
     
     
@@ -446,11 +442,9 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
                 // 根据广播的status来确定是在区域内还是在区域外
                 int status = bundle.getInt("status");
                 if (status == 0) {
-                    Toast.makeText(getApplicationContext(), "不在区域",
-                            Toast.LENGTH_SHORT).show();
+                	ToastUtil.show(SecondActivity.this, "不在区域内");
                 } else {
-                    Toast.makeText(getApplicationContext(), "在区域内",
-                            Toast.LENGTH_SHORT).show();
+                	ToastUtil.show(SecondActivity.this, "在区域内");
                 }
  
             }
@@ -472,7 +466,6 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		
 		searchText = (AutoCompleteTextView) findViewById(R.id.keyWord);
 		searchText.addTextChangedListener(this);// 添加文本输入框监听事件
-		editCity = (EditText) findViewById(R.id.city);
 		aMap.setOnMarkerClickListener(this);// 添加点击marker监听事件
 		aMap.setInfoWindowAdapter(this);// 添加显示infowindow监听事件
     	//
@@ -512,11 +505,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	 */
 	protected void doSearchQuery() {
 		showProgressDialog();// 显示进度框
-		currentPage = 0;
-		query = new PoiSearch.Query(keyWord, "", editCity.getText().toString());// 第一个参数表示搜索字符串，第二个参数表示poi搜索类型，第三个参数表示poi搜索区域（空字符串代表全国）
-		query.setPageSize(10);// 设置每页最多返回多少条poiitem
-		query.setPageNum(currentPage);// 设置查第一页
 
+		query = new PoiSearch.Query(keyWord, "", "福州");// 第一个参数表示搜索字符串，第二个参数表示poi搜索类型，第三个参数表示poi搜索区域（空字符串代表全国）
 		poiSearch = new PoiSearch(this, query);
 		poiSearch.setOnPoiSearchListener(this);
 		poiSearch.searchPOIAsyn();
@@ -565,20 +555,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		return applicationName;
 	}
 
-	/**
-	 * poi没有搜索到数据，返回一些推荐城市的信息
-	 */
-	private void showSuggestCity(List<SuggestionCity> cities) {
-		String infomation = "推荐城市\n";
-		for (int i = 0; i < cities.size(); i++) {
-			infomation += "城市名称:" + cities.get(i).getCityName() + "城市区号:"
-					+ cities.get(i).getCityCode() + "城市编码:"
-					+ cities.get(i).getAdCode() + "\n";
-		}
-		ToastUtil.show(SecondActivity.this, infomation);
-
-	}
-
+	
 	
 
 	
@@ -605,7 +582,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 					}
 				});
 		try {
-			inputTips.requestInputtips(newText,  editCity.getText().toString());// 第一个参数表示提示关键字，第二个参数默认代表全国，也可以为城市区号
+			inputTips.requestInputtips(newText,  "福州");// 第一个参数表示提示关键字，第二个参数默认代表全国，也可以为城市区号
 
 		} catch (AMapException e) {
 			e.printStackTrace();
@@ -636,9 +613,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 						poiOverlay.removeFromMap();
 						poiOverlay.addToMap();
 						poiOverlay.zoomToSpan();
-					} else if (suggestionCities != null
-							&& suggestionCities.size() > 0) {
-						showSuggestCity(suggestionCities);
+				
 					} else {
 						ToastUtil.show(SecondActivity.this,
 								R.string.no_result);
@@ -671,9 +646,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		case R.id.searchButton:
 			searchButton();
 			break;
-		/**
-		 * 点击下一页按钮
-		 */
+		
 		
 		default:
 			break;

@@ -4,33 +4,53 @@ package com.example.travelguide;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
+import com.amap.api.location.LocationManagerProxy;
+import com.amap.api.location.LocationProviderProxy;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.LocationSource;
+import com.amap.api.maps.LocationSource.OnLocationChangedListener;
+import com.amap.api.maps.model.LatLng;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-public class ThirdActivity extends Activity {
+
+public class ThirdActivity extends Activity implements  LocationSource, AMapLocationListener{
 	private Spinner spinner1,spinner2;
 	private List<String> data_list;
 	private ArrayAdapter<String> arr_adapter;
-	
+	private double mm,nn;
+	private AMap aMap;
+	private OnLocationChangedListener mListener;
+    private LocationManagerProxy mLocationManagerProxy;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_third);
+		Intent intent_accept = getIntent();           //创建一个接收意图
+        Bundle bundle = intent_accept.getExtras();    //创建Bundle对象，用于接收Intent数据
+		mm = bundle.getDouble("dangqian1");               //获取Intent的内容age
+        nn = bundle.getDouble("dangqian2");  
         spinner1 = (Spinner) findViewById(R.id.spinnerthird1);
 	    
         //数据
         data_list = new ArrayList<String>();
-        
+        data_list.add("我的位置");
         data_list.add("清卜茶园");
-
         data_list.add("速跑");
         data_list.add("意祥驾校");
         data_list.add("电脑之家");
@@ -56,7 +76,6 @@ public class ThirdActivity extends Activity {
         data_list = new ArrayList<String>();
         
         data_list.add("清卜茶园");
-
         data_list.add("速跑");
         data_list.add("意祥驾校");
         data_list.add("电脑之家");
@@ -79,6 +98,14 @@ public class ThirdActivity extends Activity {
         arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //加载适配器
         spinner2.setAdapter(arr_adapter);
+        
+        
+        
+      
+				
+        
+        
+        
 		Button btn = (Button)findViewById(R.id.queren);
 		btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v){
@@ -110,8 +137,8 @@ public class ThirdActivity extends Activity {
 //				万家 26.051067，119.192433
 //				冰凌城下 26.051241，119.191629
 
-				
-				String s1 = "速跑";
+				String s0 = "我的位置";
+ 				String s1 = "速跑";
 				String s2 = "圆通快递点";
 				String s3 = "意祥驾校";
 				String s4 = "清卜茶园";
@@ -176,7 +203,7 @@ public class ThirdActivity extends Activity {
 				{
 					a=12;
 				}
-				else if(text1.length() == 0)
+				else if(text1.equals(s0))
 				{
 					a=100;
 				}
@@ -237,6 +264,8 @@ public class ThirdActivity extends Activity {
 		        Intent intent = new Intent();
 		        intent.putExtra("number1",a);    
 		        intent.putExtra("number2",b);
+		        intent.putExtra("number3",mm);
+		        intent.putExtra("number4",nn);
 		        /* 指定intent要启动的类 */
 		        intent.setClass(ThirdActivity.this, SecondActivity.class);
 		        /* 启动一个新的Activity */
@@ -246,6 +275,86 @@ public class ThirdActivity extends Activity {
 				
 			}
 		});
-	}  
+	}
+	
+	
+	
+	private void setUpMap() {
+        aMap.setLocationSource(this);// 设置定位监听
+        aMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
+        aMap.setMyLocationEnabled(false);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
+        aMap.setMyLocationType(AMap.LOCATION_TYPE_MAP_FOLLOW);
+        
+        
+    }
+
+	
+	
+	@Override
+	public void onLocationChanged(Location arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+    public void onLocationChanged(AMapLocation amapLocation) {
+        if (mListener != null && amapLocation != null) {
+            if (amapLocation.getAMapException().getErrorCode() == 0) {
+            	 LatLng latLng = new LatLng(amapLocation.getLatitude(),amapLocation.getLongitude());
+            	 mm=amapLocation.getLatitude();
+            	 nn=amapLocation.getLongitude();
+            	 
+                 
+                
+            }
+        }
+    }
+    /**
+     * 激活定位
+     */
+    @Override
+    public void activate(OnLocationChangedListener listener) {
+        mListener = listener;
+        if (mLocationManagerProxy == null) {
+        	mLocationManagerProxy = LocationManagerProxy.getInstance(this);
+            //此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
+            //注意设置合适的定位时间的间隔，并且在合适时间调用removeUpdates()方法来取消定位请求
+            //在定位结束后，在合适的生命周期调用destroy()方法     
+            //其中如果间隔时间为-1，则定位只定一次
+        	mLocationManagerProxy.requestLocationData(
+                    LocationProviderProxy.AMapNetwork, 60*1000, 10, this);
+        }
+    }
+    /**
+     * 停止定位
+     */
+    @Override
+    public void deactivate() {
+        mListener = null;
+        if (mLocationManagerProxy != null) {
+        	mLocationManagerProxy.removeUpdates(this);
+        	mLocationManagerProxy.destroy();
+        }
+        mLocationManagerProxy = null;
+    }
+	
   
 }
