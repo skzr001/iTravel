@@ -795,19 +795,20 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		
 		MarkerOptions option = new MarkerOptions();
 		//设置坐标点
-		addMarker(26.051246,119.19283,"电脑之家","1.png");//
-		addMarker(26.050908,119.19187,"千艺美发","1.png");//
-		addMarker(26.050932,119.191784,"清卟茶园","1.png");//
-		addMarker(26.051824,119.191677,"花样年华","1.png");//
-		addMarker(26.052002,119.191704,"圆通快递点","1.png");//
-		addMarker(26.052103,119.191725,"意祥驾校","1.png");//
-		addMarker(26.052171,119.191816,"知发者","1.png");//
-		addMarker(26.052171,119.191913,"小春花屋","1.png");//
-		addMarker(26.052195,119.192122,"福伯烧仙草","1.png");//
+		addMarker(26.051246,119.19283,"电脑之家","2.png",0.1f,0.5f);//
+		addMarker(26.050908,119.19187,"千艺美发","qianyi.png",0.5f,0.1f);//
+		addMarker(26.050932,119.191784,"清卟茶园","qingbu.png",0.5f,0.1f);//
+		addMarker(26.051824,119.191677,"花样年华","huayang.png",0.1f,0.5f);//
+		addMarker(26.052002,119.191704,"圆通快递","yuantong.png",0.1f,0.5f);//
+		addMarker(26.052083,119.191720,"意祥驾校","yixiang.png",0.1f,0.5f);//
+		addMarker(26.052200,119.191816,"知发者","zhifazhe.png",0.5f,0.1f);//
+		addMarker(26.052200,119.191913,"小春花屋","xiaochun.png",0.5f,0.1f);//
+		addMarker(26.052205,119.192122,"福伯烧仙草","fubo.png",0.5f,0.1f);//
 		}
-	public void addMarker(double a,double b,String title,String picture){
-		aMap.addMarker(new MarkerOptions().anchor(0.1f, 0.9f).icon(BitmapDescriptorFactory.fromAsset(picture))
-				.position(new LatLng(a,b)).title(title)
+	@SuppressWarnings("deprecation")
+	public void addMarker(double a,double b,String title,String picture,float s1,float s2){
+		aMap.addMarker(new MarkerOptions().anchor(s1, s2).icon(BitmapDescriptorFactory.fromAsset(picture))
+				.position(new LatLng(a,b)).title(title).perspective(true).setFlat(true)
 				.draggable(true));
 	}
 	public void onMapLoaded() {
