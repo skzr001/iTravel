@@ -62,8 +62,8 @@ public class FirstActivity extends Activity {
 		        intent.setClass(FirstActivity.this, SecondActivity.class);
 		        /* 启动一个新的Activity */
 		        FirstActivity.this.startActivity(intent);
-		        /* 关闭当前的Activity */
-		        FirstActivity.this.finish();
+
+		       
 		        
 				
 			}

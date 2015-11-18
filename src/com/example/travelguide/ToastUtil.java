@@ -15,4 +15,5 @@ public class ToastUtil {
 	public static void show(Context context, int info) {
 		Toast.makeText(context, info, Toast.LENGTH_LONG).show();
 	}
+	
 }
