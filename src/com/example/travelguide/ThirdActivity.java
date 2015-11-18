@@ -4,33 +4,53 @@ package com.example.travelguide;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
+import com.amap.api.location.LocationManagerProxy;
+import com.amap.api.location.LocationProviderProxy;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.LocationSource;
+import com.amap.api.maps.LocationSource.OnLocationChangedListener;
+import com.amap.api.maps.model.LatLng;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 
 public class ThirdActivity extends Activity {
 	private Spinner spinner1,spinner2;
 	private List<String> data_list;
 	private ArrayAdapter<String> arr_adapter;
-	
+	private double mm,nn;
+	private AMap aMap;
+	private OnLocationChangedListener mListener;
+    private LocationManagerProxy mLocationManagerProxy;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_third);
+		Intent intent_accept = getIntent();           //创建一个接收意图
+        Bundle bundle = intent_accept.getExtras();    //创建Bundle对象，用于接收Intent数据
+		mm = bundle.getDouble("dangqian1");               //获取Intent的内容age
+        nn = bundle.getDouble("dangqian2");  
         spinner1 = (Spinner) findViewById(R.id.spinnerthird1);
 	    
         //数据
         data_list = new ArrayList<String>();
-        
+        data_list.add("我的位置");
         data_list.add("清卜茶园");
-
         data_list.add("速跑");
         data_list.add("意祥驾校");
         data_list.add("电脑之家");
@@ -56,7 +76,6 @@ public class ThirdActivity extends Activity {
         data_list = new ArrayList<String>();
         
         data_list.add("清卜茶园");
-
         data_list.add("速跑");
         data_list.add("意祥驾校");
         data_list.add("电脑之家");
@@ -79,6 +98,14 @@ public class ThirdActivity extends Activity {
         arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //加载适配器
         spinner2.setAdapter(arr_adapter);
+        
+        
+        
+      
+				
+        
+        
+        
 		Button btn = (Button)findViewById(R.id.queren);
 		btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v){
@@ -110,8 +137,8 @@ public class ThirdActivity extends Activity {
 //				万家 26.051067，119.192433
 //				冰凌城下 26.051241，119.191629
 
-				
-				String s1 = "速跑";
+				String s0 = "我的位置";
+ 				String s1 = "速跑";
 				String s2 = "圆通快递点";
 				String s3 = "意祥驾校";
 				String s4 = "清卜茶园";
@@ -176,7 +203,7 @@ public class ThirdActivity extends Activity {
 				{
 					a=12;
 				}
-				else if(text1.length() == 0)
+				else if(text1.equals(s0))
 				{
 					a=100;
 				}
@@ -237,6 +264,8 @@ public class ThirdActivity extends Activity {
 		        Intent intent = new Intent();
 		        intent.putExtra("number1",a);    
 		        intent.putExtra("number2",b);
+		        intent.putExtra("number3",mm);
+		        intent.putExtra("number4",nn);
 		        /* 指定intent要启动的类 */
 		        intent.setClass(ThirdActivity.this, SecondActivity.class);
 		        /* 启动一个新的Activity */
@@ -246,6 +275,8 @@ public class ThirdActivity extends Activity {
 				
 			}
 		});
-	}  
-  
+	}
+	
+
+
 }
