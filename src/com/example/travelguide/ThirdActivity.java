@@ -29,7 +29,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
-public class ThirdActivity extends Activity implements  LocationSource, AMapLocationListener{
+public class ThirdActivity extends Activity {
 	private Spinner spinner1,spinner2;
 	private List<String> data_list;
 	private ArrayAdapter<String> arr_adapter;
@@ -277,84 +277,6 @@ public class ThirdActivity extends Activity implements  LocationSource, AMapLoca
 		});
 	}
 	
-	
-	
-	private void setUpMap() {
-        aMap.setLocationSource(this);// 设置定位监听
-        aMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
-        aMap.setMyLocationEnabled(false);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
-        aMap.setMyLocationType(AMap.LOCATION_TYPE_MAP_FOLLOW);
-        
-        
-    }
 
-	
-	
-	@Override
-	public void onLocationChanged(Location arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void onProviderDisabled(String provider) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onProviderEnabled(String provider) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-    public void onLocationChanged(AMapLocation amapLocation) {
-        if (mListener != null && amapLocation != null) {
-            if (amapLocation.getAMapException().getErrorCode() == 0) {
-            	 LatLng latLng = new LatLng(amapLocation.getLatitude(),amapLocation.getLongitude());
-            	 mm=amapLocation.getLatitude();
-            	 nn=amapLocation.getLongitude();
-            	 
-                 
-                
-            }
-        }
-    }
-    /**
-     * 激活定位
-     */
-    @Override
-    public void activate(OnLocationChangedListener listener) {
-        mListener = listener;
-        if (mLocationManagerProxy == null) {
-        	mLocationManagerProxy = LocationManagerProxy.getInstance(this);
-            //此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
-            //注意设置合适的定位时间的间隔，并且在合适时间调用removeUpdates()方法来取消定位请求
-            //在定位结束后，在合适的生命周期调用destroy()方法     
-            //其中如果间隔时间为-1，则定位只定一次
-        	mLocationManagerProxy.requestLocationData(
-                    LocationProviderProxy.AMapNetwork, 60*1000, 10, this);
-        }
-    }
-    /**
-     * 停止定位
-     */
-    @Override
-    public void deactivate() {
-        mListener = null;
-        if (mLocationManagerProxy != null) {
-        	mLocationManagerProxy.removeUpdates(this);
-        	mLocationManagerProxy.destroy();
-        }
-        mLocationManagerProxy = null;
-    }
-	
-  
 }
