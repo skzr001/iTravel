@@ -71,5 +71,13 @@
          android:layout_alignLeft="@+id/map"
          android:layout_alignRight="@+id/button1"
          android:background="#FFFFFF" />
+
+     <Button
+         android:id="@+id/LocationButton"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentTop="true"
+         android:text="定位" />
    
 </RelativeLayout>

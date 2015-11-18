@@ -95,10 +95,13 @@ public class SecondActivity extends Activity implements  LocationSource, AMapLoc
 OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearchListener,AMapNaviListener {
 
 	
+	private int LocationFuda=0;
+	
+	
 	private AMapNavi mAMapNavi;
 
 	// 起点终点坐标
-	private double mm,nn;
+	private double mm=0,nn=0;
 	private NaviLatLng mNaviStart = new NaviLatLng(26.051000,119.192000);
 	private NaviLatLng mNaviEnd = new NaviLatLng(26.051212,119.192369);
 	// 起点终点列表
@@ -366,6 +369,17 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 					   //finish();
 				}
 		});
+		
+		//定位按钮自定义
+		 Button btn2 = (Button)findViewById(R.id.LocationButton);
+			btn2.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+						
+				mLocationManagerProxy.requestLocationData(LocationProviderProxy.AMapNetwork,  -1, 10, SecondActivity.this);
+				
+//				showToast("mm="+mm+"  nn="+nn);
+				}
+			});
 	}
 
     
@@ -419,9 +433,9 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		// 在定位结束后，在合适的生命周期调用destroy()方法
 		// 其中如果间隔时间为-1，则定位只定一次
 		//在单次定位情况下，定位无论成功与否，都无需调用removeUpdates()方法移除请求，定位sdk内部会移除
-		mLocationManagerProxy.requestLocationData(
-				LocationProviderProxy.AMapNetwork		 
-				, 2000, 15, this);
+//		mLocationManagerProxy.requestLocationData(
+//				LocationProviderProxy.AMapNetwork		 
+//				, 2000, 15, this);
 
 		MarkerOptions markOptions = new MarkerOptions();
 		markOptions.icon(
@@ -459,12 +473,12 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 
 	private void setUpMap() {
         aMap.setLocationSource(this);// 设置定位监听
-        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
+        aMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         aMap.setMyLocationType(AMap.LOCATION_TYPE_MAP_FOLLOW);
         aMap.setOnMapLoadedListener(this);
         aMap.setOnMarkerClickListener(this);
-        aMap.moveCamera(CameraUpdateFactory.zoomTo(19));
+//        aMap.moveCamera(CameraUpdateFactory.zoomTo(20));
         addMarkersToMap();
         //
     	Button searButton = (Button) findViewById(R.id.searchButton);
@@ -876,11 +890,22 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             	 mm=amapLocation.getLatitude();
             	 nn=amapLocation.getLongitude();
             	 
+            	 LatLng Fuda=new LatLng(26.050908,119.19187);
+//     			addMarker(26.050908,119.19187,"千艺美发","1.png");//
+            	 
+            	 if(LocationFuda==0)
+            	 {
+            		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fuda,18));
+            		 showToast("请进入景区再进行定位");
+            		
+            	 }
+            	 else{
+            	 
                  // 定位成功后把地图移动到当前可视区域内
-            	 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,20));
+            	 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
 
                 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
-                
+            	 }
             }
         }
     }
@@ -897,7 +922,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             //在定位结束后，在合适的生命周期调用destroy()方法     
             //其中如果间隔时间为-1，则定位只定一次
         	mLocationManagerProxy.requestLocationData(
-                    LocationProviderProxy.AMapNetwork, 60*1000, 10, this);
+                    LocationProviderProxy.AMapNetwork, -1, 10, this);
         }
     }
     /**
