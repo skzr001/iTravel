@@ -801,6 +801,16 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		addMarker(26.052200,119.191816,"知发者","zhifazhe.png",0.5f,0.1f);//
 		addMarker(26.052200,119.191913,"小春花屋","xiaochun.png",0.5f,0.1f);//
 		addMarker(26.052205,119.192122,"福伯烧仙草","fubo.png",0.5f,0.1f);//
+		addMarker(26.051058,119.192584,"中国移动","1.png",0.5f,0.5f);//
+		addMarker(26.051082,119.192428,"万嘉超市","1.png",0.5f,0.5f);//
+		addMarker(26.050879,119.191967,"福大洗衣坊","1.png",0.5f,0.5f);//
+		addMarker(26.051964,119.192836,"赛亚数码城","1.png",0.5f,0.5f);//
+		addMarker(26.052166,119.191988,"睿智眼镜","1.png",0.5f,0.5f);//
+		addMarker(26.051915,119.191688,"速跑","1.png",0.5f,0.5f);//
+		addMarker(26.051766,119.191682,"世纪星文体","1.png",0.5f,0.5f);//
+		addMarker(26.051458,119.191634,"洵美世家","1.png",0.5f,0.5f);//
+		addMarker(26.051241,119.191639,"冰临城下","1.png",0.5f,0.5f);//
+		
 		}
 	@SuppressWarnings("deprecation")
 	public void addMarker(double a,double b,String title,String picture,float s1,float s2){
@@ -832,8 +842,24 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 			markerText.setText("据说有点坑的理发店。");
 		if(marker.getTitle().equals("小春花屋"))
 			markerText.setText("一家主要出售各类小型绿色盆栽的小店。");
-		if(marker.getTitle().equals("福伯烧仙草"))
-			markerText.setText("福大周边的一家烧仙草。");
+		if(marker.getTitle().equals("中国移动"))
+			markerText.setText("福大3区的移动点。");
+		if(marker.getTitle().equals("万嘉超市"))
+			markerText.setText("福大3区的最大超市。");
+		if(marker.getTitle().equals("福大洗衣坊"))
+			markerText.setText("福大3区的洗衣坊，洗完帮忙晒干。");
+		if(marker.getTitle().equals("赛亚数码城"))
+			markerText.setText("福大3区周边一家比较好的数码店。");
+		if(marker.getTitle().equals("睿智眼镜"))
+			markerText.setText("一家眼镜店。");
+		if(marker.getTitle().equals("速跑"))
+			markerText.setText("一家主要以出售电动车的店铺，也提供电动车的维修。");
+		if(marker.getTitle().equals("世纪星文体"))
+			markerText.setText("一家文具店。");
+		if(marker.getTitle().equals("洵美世家"))
+			markerText.setText("一家衣服店:-)？");
+		if(marker.getTitle().equals("冰临城下"))
+			markerText.setText("一家冷饮店，类似于清卟茶园。");
 		return false;
 	}
 	private void updateLocation(double latitude, double longtitude) {
