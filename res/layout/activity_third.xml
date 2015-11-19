@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/mytext"
         android:layout_toLeftOf="@+id/text2"
         android:prompt="@string/place" />
 
@@ -25,10 +24,11 @@
         android:id="@+id/queren"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView1"
+        
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_weight="1.0"
+        android:layout_below="@+id/spinnerthird2"
         android:text="确认" />
 
     <TextView

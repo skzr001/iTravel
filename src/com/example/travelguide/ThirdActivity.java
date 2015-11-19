@@ -270,7 +270,7 @@ public class ThirdActivity extends Activity {
 		        intent.setClass(ThirdActivity.this, SecondActivity.class);
 		        /* 启动一个新的Activity */
 		        ThirdActivity.this.startActivity(intent);
-
+		        finish();
 		        
 				
 			}

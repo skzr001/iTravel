@@ -5,7 +5,6 @@ import java.util.List;
 
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;
@@ -102,6 +101,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 
 	// 起点终点坐标
 	private double mm=0,nn=0;
+	private double instant_lat=0,instant_lng=0;
 	private NaviLatLng mNaviStart = new NaviLatLng(26.051000,119.192000);
 	private NaviLatLng mNaviEnd = new NaviLatLng(26.051212,119.192369);
 	// 起点终点列表
@@ -121,6 +121,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
     private LatLng mar1=new LatLng(26.0537,119.1875);
     private TextView markerText;
     private LatLng mar2=new LatLng(26.05393,119.18717);
+    
+   
     //
     private AutoCompleteTextView searchText;// 输入搜索关键字
 	private String keyWord = "";// 要输入的poi搜索关键字
@@ -362,7 +364,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 					   intent.setClass(SecondActivity.this,ThirdActivity.class);
 					  // intent.setClass(SecondActivity.this,ThirdActivity.class);
 					   startActivity(intent);
-					   //finish();
+					   finish();
 				}
 		});
 		
@@ -411,6 +413,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //        mapView.onCreate(savedInstanceState);
 //        aMap = mapView.getMap();
         
+		//geoFence
         aMap.setOnMapClickListener(this);
 		IntentFilter fliter = new IntentFilter(
 				ConnectivityManager.CONNECTIVITY_ACTION);
@@ -427,21 +430,18 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		// 其中如果间隔时间为-1，则定位只定一次
 		//在单次定位情况下，定位无论成功与否，都无需调用removeUpdates()方法移除请求，定位sdk内部会移除
 
-		
-//		mLocationManagerProxy.requestLocationData(
-//				LocationProviderProxy.AMapNetwork		 
-//				, 2000, 15, this);
 
-//		mLocationManagerProxy.requestLocationData(
-//				LocationProviderProxy.AMapNetwork		 
-//				, 2000, 15, this);
+
+		mLocationManagerProxy.requestLocationData(
+				LocationProviderProxy.AMapNetwork		 
+				, 2000, 15, this);
 
 
 		MarkerOptions markOptions = new MarkerOptions();
 		markOptions.icon(
 				BitmapDescriptorFactory.fromBitmap(BitmapFactory
 						.decodeResource(getResources(),
-								R.drawable.icon)))
+								R.drawable.location_marker)))
 				.anchor(0.5f, 0.5f);
 		mGPSMarker = aMap.addMarker(markOptions);
 		aMap.setOnMapClickListener(this);
@@ -459,11 +459,14 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
                 // 根据广播的status来确定是在区域内还是在区域外
                 int status = bundle.getInt("status");
                 if (status == 0) {
-                	ToastUtil.show(SecondActivity.this, "不在区域内");
+                	showToast("您不在该区域");
                 } else {
-                	ToastUtil.show(SecondActivity.this, "在区域内");
+                	showToast("您已进入该区域");
                 }
  
+            }
+            else{
+            	showToast("您已进入景区");
             }
         }
     };
@@ -673,8 +676,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	
 	private void addMarkersToMap() {
    	 	LatLng latLng = new LatLng(26.05124,119.19283);//电脑之家
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);	
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);	
 		CircleOptions circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 100))
@@ -682,8 +685,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 		
 		latLng = new LatLng(26.050908,119.19187);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -691,8 +694,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 		
 		latLng = new LatLng(26.050932,119.191784);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -700,8 +703,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 		
 		latLng = new LatLng(26.05182,119.191677);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -709,8 +712,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 		
 		latLng = new LatLng(26.052002,119.191704);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -718,8 +721,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 		
 		latLng = new LatLng(26.052103,119.191725);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -727,8 +730,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 		
 		latLng = new LatLng(26.052171,119.191816);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -736,8 +739,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 				
 		latLng = new LatLng(26.052171,119.191913);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -745,8 +748,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 		
 		latLng = new LatLng(26.052195,119.192122);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -754,8 +757,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 		
 		latLng = new LatLng(26.051906,119.191682);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -763,8 +766,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 		
 		latLng = new LatLng(26.051067,119.192433);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -772,8 +775,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		mCircle = aMap.addCircle(circleOptions);
 		
 		latLng = new LatLng(26.051241,119.191629);
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 		circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(10)
 				.fillColor(Color.argb(180, 224, 171, 10))
@@ -869,28 +872,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
  
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mapView.onResume();
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mapView.onPause();
-        deactivate();
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mapView.onDestroy();
-        // 销毁定位
-        mLocationManagerProxy.removeGeoFenceAlert(mPendingIntent);
-        mLocationManagerProxy.destroy();
-        unregisterReceiver(mGeoFenceReceiver);
-        AMapNavi.getInstance(this).removeAMapNaviListener(this);
-
-    }
+    
      
     /**
      * 定位成功后回调函数
@@ -899,25 +881,29 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
     public void onLocationChanged(AMapLocation amapLocation) {
         if (mListener != null && amapLocation != null) {
             if (amapLocation.getAMapException().getErrorCode() == 0) {
+            	updateLocation(amapLocation.getLatitude(), amapLocation.getLongitude());
             	 LatLng latLng = new LatLng(amapLocation.getLatitude(),amapLocation.getLongitude());
             	 mm=amapLocation.getLatitude();
             	 nn=amapLocation.getLongitude();
+            	 instant_lat=amapLocation.getLatitude();
+            	 instant_lng=amapLocation.getLongitude();
             	 
             	 LatLng Fuda=new LatLng(26.050908,119.19187);
 //     			addMarker(26.050908,119.19187,"千艺美发","1.png");//
             	 
             	 if(LocationFuda==0)
             	 {
+            		 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
             		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fuda,18));
-            		 showToast("请进入景区再进行定位");
+//            		 showToast("请进入景区再进行定位");
             		
             	 }
             	 else{
-            	 
+            		 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
                  // 定位成功后把地图移动到当前可视区域内
             	 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
 
-                mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
+                
             	 }
             }
         }
@@ -952,7 +938,39 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
     }
 	
 	
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //mLocationManagerProxy.removeGeoFenceAlert(mPendingIntent);
+		mLocationManagerProxy.removeUpdates(this);
+		mLocationManagerProxy.destroy();
+        mapView.onPause();
+        deactivate();
+    }
+    
+	protected void onStart() {
+		super.onStart();
+	}
 	
+	protected void onStop() {
+		super.onStop();
+	}
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+        // 销毁定位
+       
+
+        AMapNavi.getInstance(this).removeAMapNaviListener(this);
+
+    }
 	
 	
 	@Override
