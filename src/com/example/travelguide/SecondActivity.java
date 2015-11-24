@@ -90,6 +90,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.travelguide.Nameclass;
+
 public class SecondActivity extends Activity implements  LocationSource, AMapLocationListener, OnMapClickListener, OnMarkerClickListener, 
 OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearchListener,AMapNaviListener {
 
@@ -813,12 +815,10 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		addMarker(26.051766,119.191682,"世纪星文体","1.png",0.5f,0.5f);//
 		addMarker(26.051458,119.191634,"洵美世家","1.png",0.5f,0.5f);//
 		addMarker(26.051241,119.191639,"冰临城下","1.png",0.5f,0.5f);//
-		
 		}
-	@SuppressWarnings("deprecation")
 	public void addMarker(double a,double b,String title,String picture,float s1,float s2){
 		aMap.addMarker(new MarkerOptions().anchor(s1, s2).icon(BitmapDescriptorFactory.fromAsset(picture))
-				.position(new LatLng(a,b)).title(title).perspective(true).setFlat(true)
+				.position(new LatLng(a,b)).title(title).setFlat(true)
 				.draggable(true));
 	}
 	public void onMapLoaded() {
