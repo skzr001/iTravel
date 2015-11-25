@@ -42,18 +42,9 @@ import com.amap.api.navi.model.NaviLatLng;
 import com.amap.api.navi.view.RouteOverLay;
 import com.example.travelguide.R;
 import com.example.travelguide.SecondActivity;
-import com.example.travelguide.AMapUtil;
-import com.example.travelguide.ToastUtil;
-
-
-
-
-
-
-
-
-
-
+import com.example.travelguide.until.AMapUtil;
+import com.example.travelguide.until.Nameclass;
+import com.example.travelguide.until.ToastUtil;
 import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.core.SuggestionCity;
@@ -89,8 +80,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.travelguide.Nameclass;
 
 public class SecondActivity extends Activity implements  LocationSource, AMapLocationListener, OnMapClickListener, OnMarkerClickListener, 
 OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearchListener,AMapNaviListener {

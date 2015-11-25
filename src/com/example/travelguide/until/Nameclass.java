@@ -1,8 +1,8 @@
-package com.example.travelguide;
+package com.example.travelguide.until;
 
 import com.amap.api.maps.model.LatLng;
 
-class Nameclass {
+public class Nameclass {
 	LatLng 电脑之家 =new LatLng(26.050932,119.191784);
 	LatLng 千艺美发 =new LatLng(26.050932,119.191784);
 	LatLng 清卟茶园 =new LatLng(26.050932,119.191784);
