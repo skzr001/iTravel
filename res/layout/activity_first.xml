@@ -34,7 +34,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/spinnerfirst"
         android:layout_weight="1.0"
-        android:text="搜索"
+        android:background="@drawble/yes"
          />
 
 </RelativeLayout>
