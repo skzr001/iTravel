@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@drawable/begin"
+    >
 
     <TextView
         android:id="@+id/mytext"
@@ -11,30 +13,22 @@
         android:layout_height="wrap_content"
         android:text="请选择景区:" />
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/icon" />
-
     <Spinner
         android:id="@+id/spinnerfirst"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/mytext"
+        android:layout_toLeftOf="@+id/searchText"
         android:prompt="@string/place" />
 
     <Button
         android:id="@+id/searchText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/spinnerfirst"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/spinnerfirst"
         android:layout_weight="1.0"
-        android:background="@drawble/yes"
-         />
+        android:background="@drawable/local" />
 
 </RelativeLayout>
