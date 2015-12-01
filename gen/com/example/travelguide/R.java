@@ -27,11 +27,13 @@ public final class R {
         public static final int icon=0x7f020003;
         public static final int local=0x7f020004;
         public static final int location_marker=0x7f020005;
-        public static final int text_search=0x7f020006;
-        public static final int text_search_default=0x7f020007;
-        public static final int text_search_pressed=0x7f020008;
-        public static final int text_search_selected=0x7f020009;
-        public static final int yes=0x7f02000a;
+        public static final int roadbutton=0x7f020006;
+        public static final int searchbutton=0x7f020007;
+        public static final int text_search=0x7f020008;
+        public static final int text_search_default=0x7f020009;
+        public static final int text_search_pressed=0x7f02000a;
+        public static final int text_search_selected=0x7f02000b;
+        public static final int yes=0x7f02000c;
     }
     public static final class id {
         public static final int LocationButton=0x7f080008;

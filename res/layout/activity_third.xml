@@ -17,12 +17,11 @@
         android:id="@+id/queren"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_weight="1.0"
         android:layout_below="@+id/spinnerthird2"
-        android:background="@drawable/yes"/>
+        android:layout_toLeftOf="@+id/text2"
+        android:layout_weight="1.0"
+        android:background="@drawable/yes" />
 
     <TextView
         android:id="@+id/text2"
