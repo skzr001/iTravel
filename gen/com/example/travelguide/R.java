@@ -21,14 +21,22 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int icon=0x7f020001;
-        public static final int text_search=0x7f020002;
-        public static final int text_search_default=0x7f020003;
-        public static final int text_search_pressed=0x7f020004;
-        public static final int text_search_selected=0x7f020005;
+        public static final int background=0x7f020000;
+        public static final int begin=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int icon=0x7f020003;
+        public static final int local=0x7f020004;
+        public static final int location_marker=0x7f020005;
+        public static final int roadbutton=0x7f020006;
+        public static final int searchbutton=0x7f020007;
+        public static final int text_search=0x7f020008;
+        public static final int text_search_default=0x7f020009;
+        public static final int text_search_pressed=0x7f02000a;
+        public static final int text_search_selected=0x7f02000b;
+        public static final int yes=0x7f02000c;
     }
     public static final class id {
+<<<<<<< HEAD
         public static final int LocationButton=0x7f080009;
         public static final int action_settings=0x7f080010;
         public static final int button1=0x7f080007;
@@ -46,6 +54,24 @@ public final class R {
         public static final int spinnerthird2=0x7f08000e;
         public static final int text1=0x7f08000d;
         public static final int text2=0x7f08000b;
+=======
+        public static final int LocationButton=0x7f080008;
+        public static final int action_settings=0x7f08000f;
+        public static final int button1=0x7f080006;
+        public static final int keyWord=0x7f080004;
+        public static final int map=0x7f080003;
+        public static final int mark_listenter_text=0x7f080007;
+        public static final int mytext=0x7f080000;
+        public static final int online_user_list_item_textview=0x7f08000e;
+        public static final int queren=0x7f08000b;
+        public static final int searchButton=0x7f080005;
+        public static final int searchText=0x7f080002;
+        public static final int spinnerfirst=0x7f080001;
+        public static final int spinnerthird1=0x7f080009;
+        public static final int spinnerthird2=0x7f08000c;
+        public static final int text1=0x7f08000d;
+        public static final int text2=0x7f08000a;
+>>>>>>> 0d9b6ea46e9c51dbb10bfc971ec95ae55c3c5f2f
     }
     public static final class layout {
         public static final int activity_first=0x7f030000;

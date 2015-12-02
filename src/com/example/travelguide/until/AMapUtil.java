@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.example.travelguide;
+package com.example.travelguide.until;
 
 
 import android.widget.EditText;
