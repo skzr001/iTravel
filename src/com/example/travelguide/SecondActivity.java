@@ -868,16 +868,20 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             	 
             	 if(LocationFuda==0)
             	 {
+            		 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
             		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fuda,18));
+            		 
             		 showToast("请进入景区再进行定位");
             		
             	 }
             	 else{
             	 
+            		 
+            		 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
                  // 定位成功后把地图移动到当前可视区域内
             	 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
 
-                mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
+                
             	 }
             }
         }
