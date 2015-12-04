@@ -3,8 +3,10 @@ package com.example.travelguide;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;
@@ -78,6 +80,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -122,7 +125,16 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	private PoiResult poiResult; // poi返回的结果
 	private PoiSearch.Query query;// Poi查询条件类
 	private PoiSearch poiSearch;// POI搜索
-    //
+	
+//    /**
+//     * 音频播放
+//     */
+//	private ImageButton mb1,mb2,mb3;  
+//    private TextView tv;  
+//    private MediaPlayer mp;
+//    private boolean isPaused = false;  
+    
+    
     public static final String GEOFENCE_BROADCAST_ACTION = "com.example.travelguide";
     
     @Override
@@ -130,7 +142,124 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_second);
+//		/**
+//		 * 音频播放的四个按钮和源文件目录
+//		 */
+//		mb1 = (ImageButton)findViewById(R.id.button1);  
+//	    mb2 = (ImageButton)findViewById(R.id.keyWord);  
+//	    mb3 = (ImageButton)findViewById(R.id.LocationButton);  
+//	    tv = (TextView)findViewById(R.id.text2);  
+//	    mp = MediaPlayer.create(this,R.raw.aaa); 
+//	    mb1.setOnClickListener(new ImageButton.OnClickListener(){  
+//	    	@Override 
+//	    	public void onClick(View v) {  
+//	    	try {       
+//	    	if(mp != null)  
+//	    	{  
+//	    	mp.stop();  
+//	    	}      
+//	    	mp.prepare();  
+//	    	mp.start();  
+//	    	tv.setText("音乐播放中...");  
+//	    	} catch (Exception e) {  
+//	    	tv.setText("播放发生异常...");  
+//	    	e.printStackTrace();  
+//	    	}      
+//	    	}        
+//	    	});  
+//	    
+//	    mb2.setOnClickListener(new ImageButton.OnClickListener(){  
+//	    	@Override 
+//	    	public void onClick(View v) {  
+//	    	try {  
+//	    	if(mp !=null)  
+//	    	{  
+//	    	mp.stop();  
+//	    	tv.setText("音乐停止播放...");  
+//	    	 }  
+//	    	} catch (Exception e) {  
+//	    	tv.setText("音乐停止发生异常...");  
+//	    	e.printStackTrace();  
+//	    	}  
+//	    	     
+//	    	}           
+//	    	});  
+//	    mb3.setOnClickListener(new ImageButton.OnClickListener(){  
+//	    	@Override 
+//	    	public void onClick(View v) {  
+//	    	try {  
+//	    	if(mp !=null)  
+//	    	{  
+//	    	if(isPaused==false)  
+//	    	{  
+//	    	mp.pause();  
+//	    	isPaused=true;  
+//	    	tv.setText("停止播放!");  
+//	    	}  
+//	    	else if(isPaused==true)  
+//	    	{  
+//	    	mp.start();  
+//	    	isPaused = false;  
+//	    	tv.setText("开始播发!");  
+//	    	}  
+//	    	}  
+//	    	} catch (Exception e) {  
+//	    	tv.setText("发生异常...");  
+//	    	e.printStackTrace();  
+//	    	}  
+//	    	     
+//	    	}           
+//	    	}); 
+//	    /* 当MediaPlayer.OnCompletionLister会运行的Listener */ 
+//	    mp.setOnCompletionListener(  
+//	    new MediaPlayer.OnCompletionListener()   
+//	    {   
+//	    // @Override   
+//	    /*覆盖文件播出完毕事件*/ 
+//	    public void onCompletion(MediaPlayer arg0)   
+//	    {   
+//	    try   
+//	    {   
+//	    /*解除资源与MediaPlayer的赋值关系  
+//	    * 让资源可以为其它程序利用*/ 
+//	    mp.release();   
+//	    /*改变TextView为播放结束*/ 
+//	    tv.setText("音乐播发结束!");   
+//	    }   
+//	    catch (Exception e)   
+//	    {   
+//	    tv.setText(e.toString());   
+//	    e.printStackTrace();   
+//	    }   
+//	    }   
+//	    });   
+//	    /* 当MediaPlayer.OnErrorListener会运行的Listener */ 
+//	    mp.setOnErrorListener(new MediaPlayer.OnErrorListener()  
+//	    {  
+//	    @Override 
+//	    /*覆盖错误处理事件*/ 
+//	    public boolean onError(MediaPlayer arg0, int arg1, int arg2)  
+//	    {  
+//	    // TODO Auto-generated method stub  
+//	    try 
+//	    {  
+//	    /*发生错误时也解除资源与MediaPlayer的赋值*/ 
+//	    mp.release();  
+//	    tv.setText("播放发生异常!");  
+//	    }  
+//	    catch (Exception e)  
+//	    {  
+//	    tv.setText(e.toString());   
+//	    e.printStackTrace();   
+//	    }   
+//	    return false;   
+//	    }   
+//	    });   
+//	    /**
+//	     * 音乐模块添加完成
+//	     */
 
+	    
 		mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
 	    init(savedInstanceState);
@@ -411,6 +540,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		fliter.addAction(GEOFENCE_BROADCAST_ACTION);
 		registerReceiver(mGeoFenceReceiver, fliter);
 		mLocationManagerProxy = LocationManagerProxy.getInstance(this);
+		
 		Intent intent = new Intent(GEOFENCE_BROADCAST_ACTION);
 		mPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0,
 				intent, 0);
@@ -436,6 +566,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 				.anchor(0.5f, 0.5f);
 		mGPSMarker = aMap.addMarker(markOptions);
 		aMap.setOnMapClickListener(this);
+		addMarkersToMap();
     }
 	
 	
@@ -449,16 +580,19 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
                 Bundle bundle = intent.getExtras();
                 // 根据广播的status来确定是在区域内还是在区域外
                 int status = bundle.getInt("status");
+//                showToast("测试成功");
                 if (status == 0) {
-                	showToast("您不在该区域");
+                	LocationFuda=0;
+//                	showToast("您不在该区域");
                 } else {
-                	showToast("您已进入该区域");
+                	LocationFuda=1;
+//                	showToast("您已进入该区域");
                 }
  
             }
-            else{
-            	showToast("您已进入景区");
-            }
+//            else{
+//            	showToast("您已进入景区");
+//            }
         }
     };
 
@@ -470,7 +604,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
         aMap.setOnMapLoadedListener(this);
         aMap.setOnMarkerClickListener(this);
 //        aMap.moveCamera(CameraUpdateFactory.zoomTo(20));
-        addMarkersToMap();
+        
+//        addMarkersToMap();
         //
     	Button searButton = (Button) findViewById(R.id.searchButton);
 		searButton.setOnClickListener(this);
@@ -666,119 +801,120 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	//
 	
 	private void addMarkersToMap() {
-   	 	LatLng latLng = new LatLng(26.05124,119.19283);//电脑之家
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);	
-		CircleOptions circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 100))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-		
-		latLng = new LatLng(26.050908,119.19187);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-		
-		latLng = new LatLng(26.050932,119.191784);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-		
-		latLng = new LatLng(26.05182,119.191677);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-		
-		latLng = new LatLng(26.052002,119.191704);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-		
-		latLng = new LatLng(26.052103,119.191725);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-		
-		latLng = new LatLng(26.052171,119.191816);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-				
-		latLng = new LatLng(26.052171,119.191913);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-		
-		latLng = new LatLng(26.052195,119.192122);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-		
-		latLng = new LatLng(26.051906,119.191682);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-		
-		latLng = new LatLng(26.051067,119.192433);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
-		
-		latLng = new LatLng(26.051241,119.191629);
-//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(10)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = aMap.addCircle(circleOptions);
+//   	 	LatLng latLng = new LatLng(26.05124,119.19283);//电脑之家
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);	
+//		CircleOptions circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 100))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//		
+//		latLng = new LatLng(26.050908,119.19187);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//		
+//		latLng = new LatLng(26.050932,119.191784);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//		
+//		latLng = new LatLng(26.05182,119.191677);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//		
+//		latLng = new LatLng(26.052002,119.191704);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//		
+//		latLng = new LatLng(26.052103,119.191725);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//		
+//		latLng = new LatLng(26.052171,119.191816);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//				
+//		latLng = new LatLng(26.052171,119.191913);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//		
+//		latLng = new LatLng(26.052195,119.192122);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//		
+//		latLng = new LatLng(26.051906,119.191682);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//		
+//		latLng = new LatLng(26.051067,119.192433);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
+//		
+//		latLng = new LatLng(26.051241,119.191629);
+////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+//		circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(10)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
 		
 						/*福大B区*/
-		latLng = new LatLng(26.051125,119.192069);
+   	 	
+		LatLng latLng = new LatLng(26.051125,119.192069);
 		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 				latLng.longitude, 170, 1000 * 60 * 30, mPendingIntent);
-		circleOptions = new CircleOptions();
+		CircleOptions circleOptions = new CircleOptions();
 		circleOptions.center(latLng).radius(170)
 				.fillColor(Color.argb(180, 224, 171, 10))
 				.strokeColor(Color.RED);
@@ -885,6 +1021,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             		 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
             		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fuda,18));
 <<<<<<< HEAD
+<<<<<<< HEAD
             		 
             		 showToast("请进入景区再进行定位");
             		
@@ -894,6 +1031,9 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             		 
 =======
 //            		 showToast("请进入景区再进行定位");
+=======
+            		 showToast("请进入景区再进行定位");
+>>>>>>> 28ed84a9debd9a3d7a3d47a1dad1d1ca90eea9f0
             		
             	 }
             	 else{
@@ -901,8 +1041,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             		 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
                  // 定位成功后把地图移动到当前可视区域内
             	 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
-
-                
+            	 showToast("您已在目标景区");
             	 }
             }
         }
@@ -945,9 +1084,10 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
     @Override
     protected void onPause() {
         super.onPause();
-        //mLocationManagerProxy.removeGeoFenceAlert(mPendingIntent);
+        mLocationManagerProxy.removeGeoFenceAlert(mPendingIntent);
 		mLocationManagerProxy.removeUpdates(this);
 		mLocationManagerProxy.destroy();
+		unregisterReceiver(mGeoFenceReceiver);
         mapView.onPause();
         deactivate();
     }
@@ -996,10 +1136,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		
 	}
 
-	@Override
-	public void onMapClick(LatLng latLng) {
-		// TODO Auto-generated method stub
-	}
+
 
 
 	
@@ -1157,7 +1294,26 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void onMapClick(LatLng latLng) {
+//		mLocationManagerProxy.removeGeoFenceAlert(mPendingIntent);
+//		if (mCircle != null) {
+//			mCircle.remove();
+//		}
+//		//地理围栏使用时需要与定位请求方法配合使用
+//		// 设置地理围栏，位置、半径、超时时间、处理事件
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 1000,
+//				 1000 * 60 * 30
+//				 , mPendingIntent);
+//		// 将地理围栏添加到地图上显示
+//		CircleOptions circleOptions = new CircleOptions();
+//		circleOptions.center(latLng).radius(1000)
+//				.fillColor(Color.argb(180, 224, 171, 10))
+//				.strokeColor(Color.RED);
+//		mCircle = aMap.addCircle(circleOptions);
 
+	}
 	
 
 	
