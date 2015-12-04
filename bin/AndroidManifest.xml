@@ -16,7 +16,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
 
-            android:value="c209bd90b43cf05d74a0f9c2f7d52690" />
+            android:value="7804c839f1879b8c0a874835bd1e74fd" />
 
         <activity
             android:name="com.example.travelguide.FirstActivity"
@@ -31,9 +31,10 @@
             android:name="com.example.travelguide.SecondActivity"
             android:label="@string/title_activity_second" >
         </activity>
-        <activity
+        <activity android:name="RoadActivity"></activity><activity
             android:name="com.example.travelguide.ThirdActivity">
         </activity>
+        
     </application>
     //地图包、搜索包需要的基础权限
     <uses-permission android:name="android.permission.INTERNET" />

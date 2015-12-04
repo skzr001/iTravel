@@ -14,6 +14,7 @@ import com.amap.api.maps2d.MapView;
 
 
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
@@ -31,6 +32,7 @@ public class FirstActivity extends Activity {
 	private Spinner spinner;
 	private List<String> data_list;
 	private ArrayAdapter<String> arr_adapter;
+	private int sendnum=0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class FirstActivity extends Activity {
         data_list = new ArrayList<String>();
         
         data_list.add("福州大学生活三区");
-        
+        data_list.add("福州大学生活四区");
         
         //适配器
         arr_adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data_list);
@@ -51,13 +53,19 @@ public class FirstActivity extends Activity {
         arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //加载适配器
         spinner.setAdapter(arr_adapter);
+        String text = (String) spinner.getSelectedItem();
+        if(text.equals("福州大学生活三区"))
+        {
+        	sendnum=3;
+        }
+        else sendnum=4;
 		Button btn = (Button)findViewById(R.id.searchText);
 		btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v){
 				
 				/* 新建一个Intent对象 */
 		        Intent intent = new Intent();
-		        intent.putExtra("name","LeiPei");    
+		        intent.putExtra("name1",sendnum);    
 		        /* 指定intent要启动的类 */
 		        intent.setClass(FirstActivity.this, SecondActivity.class);
 		        /* 启动一个新的Activity */

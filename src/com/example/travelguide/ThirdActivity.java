@@ -266,6 +266,7 @@ public class ThirdActivity extends Activity {
 		        intent.putExtra("number2",b);
 		        intent.putExtra("number3",mm);
 		        intent.putExtra("number4",nn);
+		        intent.putExtra("name2",3);    
 		        /* 指定intent要启动的类 */
 		        intent.setClass(ThirdActivity.this, SecondActivity.class);
 		        /* 启动一个新的Activity */

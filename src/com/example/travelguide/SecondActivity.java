@@ -58,6 +58,7 @@ import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.amap.api.services.poisearch.PoiSearch.OnPoiSearchListener;
 
+import android.R.integer;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -92,7 +93,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	
 	
 	private AMapNavi mAMapNavi;
-
+    private int sendnum=0;
 	// 起点终点坐标
 	private double mm=0,nn=0;
 	private double instant_lat=0,instant_lng=0;
@@ -121,19 +122,10 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
     private AutoCompleteTextView searchText;// 输入搜索关键字
 	private String keyWord = "";// 要输入的poi搜索关键字
 	private ProgressDialog progDialog = null;// 搜索时进度条
-	private EditText editCity;// 要输入的城市名字或者城市区号
 	private PoiResult poiResult; // poi返回的结果
 	private PoiSearch.Query query;// Poi查询条件类
 	private PoiSearch poiSearch;// POI搜索
-	
-//    /**
-//     * 音频播放
-//     */
-//	private ImageButton mb1,mb2,mb3;  
-//    private TextView tv;  
-//    private MediaPlayer mp;
-//    private boolean isPaused = false;  
-    
+
     
     public static final String GEOFENCE_BROADCAST_ACTION = "com.example.travelguide";
     
@@ -142,124 +134,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_second);
-//		/**
-//		 * 音频播放的四个按钮和源文件目录
-//		 */
-//		mb1 = (ImageButton)findViewById(R.id.button1);  
-//	    mb2 = (ImageButton)findViewById(R.id.keyWord);  
-//	    mb3 = (ImageButton)findViewById(R.id.LocationButton);  
-//	    tv = (TextView)findViewById(R.id.text2);  
-//	    mp = MediaPlayer.create(this,R.raw.aaa); 
-//	    mb1.setOnClickListener(new ImageButton.OnClickListener(){  
-//	    	@Override 
-//	    	public void onClick(View v) {  
-//	    	try {       
-//	    	if(mp != null)  
-//	    	{  
-//	    	mp.stop();  
-//	    	}      
-//	    	mp.prepare();  
-//	    	mp.start();  
-//	    	tv.setText("音乐播放中...");  
-//	    	} catch (Exception e) {  
-//	    	tv.setText("播放发生异常...");  
-//	    	e.printStackTrace();  
-//	    	}      
-//	    	}        
-//	    	});  
-//	    
-//	    mb2.setOnClickListener(new ImageButton.OnClickListener(){  
-//	    	@Override 
-//	    	public void onClick(View v) {  
-//	    	try {  
-//	    	if(mp !=null)  
-//	    	{  
-//	    	mp.stop();  
-//	    	tv.setText("音乐停止播放...");  
-//	    	 }  
-//	    	} catch (Exception e) {  
-//	    	tv.setText("音乐停止发生异常...");  
-//	    	e.printStackTrace();  
-//	    	}  
-//	    	     
-//	    	}           
-//	    	});  
-//	    mb3.setOnClickListener(new ImageButton.OnClickListener(){  
-//	    	@Override 
-//	    	public void onClick(View v) {  
-//	    	try {  
-//	    	if(mp !=null)  
-//	    	{  
-//	    	if(isPaused==false)  
-//	    	{  
-//	    	mp.pause();  
-//	    	isPaused=true;  
-//	    	tv.setText("停止播放!");  
-//	    	}  
-//	    	else if(isPaused==true)  
-//	    	{  
-//	    	mp.start();  
-//	    	isPaused = false;  
-//	    	tv.setText("开始播发!");  
-//	    	}  
-//	    	}  
-//	    	} catch (Exception e) {  
-//	    	tv.setText("发生异常...");  
-//	    	e.printStackTrace();  
-//	    	}  
-//	    	     
-//	    	}           
-//	    	}); 
-//	    /* 当MediaPlayer.OnCompletionLister会运行的Listener */ 
-//	    mp.setOnCompletionListener(  
-//	    new MediaPlayer.OnCompletionListener()   
-//	    {   
-//	    // @Override   
-//	    /*覆盖文件播出完毕事件*/ 
-//	    public void onCompletion(MediaPlayer arg0)   
-//	    {   
-//	    try   
-//	    {   
-//	    /*解除资源与MediaPlayer的赋值关系  
-//	    * 让资源可以为其它程序利用*/ 
-//	    mp.release();   
-//	    /*改变TextView为播放结束*/ 
-//	    tv.setText("音乐播发结束!");   
-//	    }   
-//	    catch (Exception e)   
-//	    {   
-//	    tv.setText(e.toString());   
-//	    e.printStackTrace();   
-//	    }   
-//	    }   
-//	    });   
-//	    /* 当MediaPlayer.OnErrorListener会运行的Listener */ 
-//	    mp.setOnErrorListener(new MediaPlayer.OnErrorListener()  
-//	    {  
-//	    @Override 
-//	    /*覆盖错误处理事件*/ 
-//	    public boolean onError(MediaPlayer arg0, int arg1, int arg2)  
-//	    {  
-//	    // TODO Auto-generated method stub  
-//	    try 
-//	    {  
-//	    /*发生错误时也解除资源与MediaPlayer的赋值*/ 
-//	    mp.release();  
-//	    tv.setText("播放发生异常!");  
-//	    }  
-//	    catch (Exception e)  
-//	    {  
-//	    tv.setText(e.toString());   
-//	    e.printStackTrace();   
-//	    }   
-//	    return false;   
-//	    }   
-//	    });   
-//	    /**
-//	     * 音乐模块添加完成
-//	     */
 
-	    
 		mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
 	    init(savedInstanceState);
@@ -272,7 +147,16 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		
 		mRouteOverLay = new RouteOverLay(aMap, null);
 		
+		Intent intent_num1 = getIntent();
+		Bundle bundle_num1 = intent_num1.getExtras();  
+		sendnum=bundle_num1.getInt("name1");
 		
+		Intent intent_num2 = getIntent();
+		Bundle bundle_num2 = intent_num2.getExtras();  
+		sendnum=bundle_num2.getInt("name2");
+		Intent intent_num3 = getIntent();
+		Bundle bundle_num3 = intent_num3.getExtras();  
+		sendnum=bundle_num3.getInt("name3");
 		Intent intent_accept = getIntent();           //创建一个接收意图
         Bundle bundle = intent_accept.getExtras();    //创建Bundle对象，用于接收Intent数据
 //        String name = bundle.getString("name");       //获取Intent的内容name
@@ -472,19 +356,29 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		}
 
 		
-		
 	    
 	    
 	    Button btn = (Button)findViewById(R.id.button1);
 		btn.setOnClickListener(new OnClickListener() {
 		public void onClick(View v) {
-			           Intent intent = new Intent();
-			           intent.putExtra("dangqian1",mm);    
-		               intent.putExtra("dangqian2",nn);
-					   intent.setClass(SecondActivity.this,ThirdActivity.class);
-					  // intent.setClass(SecondActivity.this,ThirdActivity.class);
-					   startActivity(intent);
-					   finish();
+			if (sendnum==3) {
+				Intent intent = new Intent();
+		           intent.putExtra("dangqian1",mm);    
+	               intent.putExtra("dangqian2",nn);
+				   intent.setClass(SecondActivity.this,ThirdActivity.class);
+				  // intent.setClass(SecondActivity.this,ThirdActivity.class);
+				   startActivity(intent);
+				   finish();
+			}
+			           else {
+			        	   Intent intent = new Intent();
+				           intent.putExtra("dangqian1",mm);    
+			               intent.putExtra("dangqian2",nn);
+						   intent.setClass(SecondActivity.this,RoadActivity.class);
+						  // intent.setClass(SecondActivity.this,ThirdActivity.class);
+						   startActivity(intent);
+						   finish();
+					}
 				}
 		});
 		
@@ -1020,24 +914,14 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             	 {
             		 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
             		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fuda,18));
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             		 
             		 showToast("请进入景区再进行定位");
             		
             	 }
-            	 else{
             	 
-            		 
-=======
-//            		 showToast("请进入景区再进行定位");
-=======
-            		 showToast("请进入景区再进行定位");
->>>>>>> 28ed84a9debd9a3d7a3d47a1dad1d1ca90eea9f0
-            		
-            	 }
             	 else{
->>>>>>> 0d9b6ea46e9c51dbb10bfc971ec95ae55c3c5f2f
+
             		 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
                  // 定位成功后把地图移动到当前可视区域内
             	 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
