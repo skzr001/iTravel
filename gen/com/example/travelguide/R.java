@@ -36,23 +36,23 @@ public final class R {
         public static final int yes=0x7f02000c;
     }
     public static final class id {
-        public static final int LocationButton=0x7f09000d;
+        public static final int LocationButton=0x7f09000c;
         public static final int action_settings=0x7f090012;
-        public static final int button1=0x7f09000b;
+        public static final int button1=0x7f09000a;
         public static final int keyWord=0x7f090009;
         public static final int map=0x7f090008;
-        public static final int mark_listenter_text=0x7f09000c;
+        public static final int mark_listenter_text=0x7f09000b;
         public static final int mytext=0x7f090000;
         public static final int online_user_list_item_textview=0x7f090011;
-        public static final int queren=0x7f09000f;
+        public static final int queren=0x7f090010;
         public static final int queren1=0x7f090007;
-        public static final int searchButton=0x7f09000a;
+        public static final int searchButton=0x7f09000d;
         public static final int searchText=0x7f090002;
         public static final int spinnerfirst=0x7f090001;
         public static final int spinnerroad1=0x7f090003;
         public static final int spinnerroad2=0x7f090006;
         public static final int spinnerthird1=0x7f09000e;
-        public static final int spinnerthird2=0x7f090010;
+        public static final int spinnerthird2=0x7f09000f;
         public static final int text1=0x7f090005;
         public static final int text2=0x7f090004;
     }
