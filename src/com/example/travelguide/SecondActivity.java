@@ -89,6 +89,8 @@ public class SecondActivity extends Activity implements  LocationSource, AMapLoc
 OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearchListener,AMapNaviListener {
 
 	
+	private int area=0;
+	
 	private int LocationFuda=0;
 	
 	
@@ -150,6 +152,8 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		Intent intent_num1 = getIntent();
 		Bundle bundle_num1 = intent_num1.getExtras();  
 		sendnum=bundle_num1.getInt("name1");
+		
+		area=sendnum;
 		
 		Intent intent_num2 = getIntent();
 		Bundle bundle_num2 = intent_num2.getExtras();  
@@ -387,7 +391,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 			btn2.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 						
-				mLocationManagerProxy.requestLocationData(LocationProviderProxy.AMapNetwork,  -1, 10, SecondActivity.this);
+				mLocationManagerProxy.requestLocationData(LocationProviderProxy.AMapNetwork,  -1, 3, SecondActivity.this);
 				
 //				showToast("mm="+mm+"  nn="+nn);
 				}
@@ -907,13 +911,16 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             	 instant_lat=amapLocation.getLatitude();
             	 instant_lng=amapLocation.getLongitude();
             	 
-            	 LatLng Fuda=new LatLng(26.050908,119.19187);
+            	 LatLng Fudathree=new LatLng(26.050908,119.19187);
+            	 LatLng Fudafour=new LatLng(26.050677,119.190894);
 //     			addMarker(26.050908,119.19187,"千艺美发","1.png");//
+//            	 四区  119.190894,26.050677
             	 
             	 if(LocationFuda==0)
             	 {
             		 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
-            		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fuda,18));
+            		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fudathree,18));
+            		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fudafour,18));
 
             		 
             		 showToast("请进入景区再进行定位");
