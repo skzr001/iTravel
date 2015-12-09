@@ -1,5 +1,5 @@
 package com.example.travelguide;
-
+import com.example.travelguide.until.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -817,31 +817,33 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 				.fillColor(Color.argb(180, 224, 171, 10))
 				.strokeColor(Color.RED);
 		mCircle = aMap.addCircle(circleOptions);//福大三区
+		Nameclass nc=new Nameclass();
 		
 		MarkerOptions option = new MarkerOptions();
+
 		//设置坐标点
-		addMarker(26.051246,119.19283,"电脑之家","2.png",0.1f,0.5f);//
-		addMarker(26.050908,119.19187,"千艺美发","qianyi.png",0.5f,0.1f);//
-		addMarker(26.050932,119.191784,"清卟茶园","qingbu.png",0.5f,0.1f);//
-		addMarker(26.051824,119.191677,"花样年华","huayang.png",0.1f,0.5f);//
-		addMarker(26.052002,119.191704,"圆通快递","yuantong.png",0.1f,0.5f);//
-		addMarker(26.052083,119.191720,"意祥驾校","yixiang.png",0.1f,0.5f);//
-		addMarker(26.052200,119.191816,"知发者","zhifazhe.png",0.5f,0.1f);//
-		addMarker(26.052200,119.191913,"小春花屋","xiaochun.png",0.5f,0.1f);//
-		addMarker(26.052205,119.192122,"福伯烧仙草","fubo.png",0.5f,0.1f);//
-		addMarker(26.051058,119.192584,"中国移动","1.png",0.5f,0.5f);//
-		addMarker(26.051082,119.192428,"万嘉超市","1.png",0.5f,0.5f);//
-		addMarker(26.050879,119.191967,"福大洗衣坊","1.png",0.5f,0.5f);//
-		addMarker(26.051964,119.192836,"赛亚数码城","1.png",0.5f,0.5f);//
-		addMarker(26.052166,119.191988,"睿智眼镜","1.png",0.5f,0.5f);//
-		addMarker(26.051915,119.191688,"速跑","1.png",0.5f,0.5f);//
-		addMarker(26.051766,119.191682,"世纪星文体","1.png",0.5f,0.5f);//
-		addMarker(26.051458,119.191634,"洵美世家","1.png",0.5f,0.5f);//
-		addMarker(26.051241,119.191639,"冰临城下","1.png",0.5f,0.5f);//
+		addMarker(nc.电脑之家,"电脑之家","2.png",0.1f,0.5f);//
+		addMarker(nc.千艺美发,"千艺美发","qianyi.png",0.5f,0.1f);//
+		addMarker(nc.清卟茶园,"清卟茶园","qingbu.png",0.5f,0.1f);//
+		addMarker(nc.花样年华,"花样年华","huayang.png",0.1f,0.5f);//
+		addMarker(nc.圆通快递,"圆通快递","yuantong.png",0.1f,0.5f);//
+		addMarker(nc.意祥驾校,"意祥驾校","yixiang.png",0.1f,0.5f);//
+		addMarker(nc.知发者,"知发者","zhifazhe.png",0.5f,0.1f);//
+		addMarker(nc.小春花屋,"小春花屋","xiaochun.png",0.5f,0.1f);//
+		addMarker(nc.福伯烧仙草,"福伯烧仙草","fubo.png",0.5f,0.1f);//
+		addMarker(nc.中国移动,"中国移动","1.png",0.5f,0.5f);//
+		addMarker(nc.万嘉超市,"万嘉超市","1.png",0.5f,0.5f);//
+		addMarker(nc.福大洗衣坊,"福大洗衣坊","1.png",0.5f,0.5f);//
+		addMarker(nc.赛亚数码城,"赛亚数码城","1.png",0.5f,0.5f);//
+		addMarker(nc.睿智眼镜,"睿智眼镜","1.png",0.5f,0.5f);//
+		addMarker(nc.速跑,"速跑","1.png",0.5f,0.5f);//
+		addMarker(nc.世纪星文体,"世纪星文体","1.png",0.5f,0.5f);//
+		addMarker(nc.洵美世家,"洵美世家","1.png",0.5f,0.5f);//
+		addMarker(nc.冰临城下,"冰临城下","1.png",0.5f,0.5f);//
 		}
-	public void addMarker(double a,double b,String title,String picture,float s1,float s2){
+	public void addMarker(LatLng a,String title,String picture,float s1,float s2){
 		aMap.addMarker(new MarkerOptions().anchor(s1, s2).icon(BitmapDescriptorFactory.fromAsset(picture))
-				.position(new LatLng(a,b)).title(title).setFlat(true)
+				.position(a).title(title).setFlat(true)
 				.draggable(true));
 	}
 	public void onMapLoaded() {
