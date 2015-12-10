@@ -1,5 +1,6 @@
 package com.example.travelguide;
 import com.example.travelguide.until.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,10 +61,12 @@ import com.amap.api.services.poisearch.PoiSearch.OnPoiSearchListener;
 
 import android.R.integer;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
@@ -90,7 +93,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 
 	
 	private int area=0;
-	
+	private int store=0;
 	private int LocationFuda=0;
 	
 	
@@ -485,6 +488,30 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
                 } else {
                 	LocationFuda=1;
 //                	showToast("您已进入该区域");
+                	AlertDialog.Builder dialog=new AlertDialog.Builder(SecondActivity.this);
+                	dialog.setTitle("提示信息");
+                	dialog.setMessage("是否收听音频介绍");
+                	dialog.setCancelable(false);
+                	dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							Intent intent1=new Intent();
+							intent1.putExtra("num",store);
+							intent1.setClass(SecondActivity.this, MusicActivity.class);
+							startActivity(intent1);
+						}
+					});
+                	dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							
+						}
+					});
+                	dialog.show();
                 }
  
             }
