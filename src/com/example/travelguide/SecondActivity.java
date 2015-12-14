@@ -867,6 +867,13 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		addMarker(nc.世纪星文体,"世纪星文体","1.png",0.5f,0.5f);//
 		addMarker(nc.洵美世家,"洵美世家","1.png",0.5f,0.5f);//
 		addMarker(nc.冰临城下,"冰临城下","1.png",0.5f,0.5f);//
+		addMarker(nc.圆通速递,"圆通速递","yuantongsu.png",0.9f,0.5f);//
+		addMarker(nc.儿画工作室,"儿画工作室","erhua.png",0.9f,0.5f);//
+		addMarker(nc.西子正装,"西子正装","xizi.png",0.9f,0.5f);//
+		addMarker(nc.悦生活,"悦生活","yueshenghuo.png",0.9f,0.5f);//
+		addMarker(nc.京东快递,"京东快递","jindong.png",0.9f,0.5f);//
+		addMarker(nc.美阁,"美阁","meige.png",0.9f,0.5f);//
+		addMarker(nc.韵达快递,"韵达快递","yunda.png",0.9f,0.5f);//
 		}
 	public void addMarker(LatLng a,String title,String picture,float s1,float s2){
 		aMap.addMarker(new MarkerOptions().anchor(s1, s2).icon(BitmapDescriptorFactory.fromAsset(picture))
@@ -913,8 +920,22 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 			markerText.setText("一家文具店。");
 		if(marker.getTitle().equals("洵美世家"))
 			markerText.setText("一家衣服店:-)？");
+		if(marker.getTitle().equals("韵达快递"))
+			markerText.setText("韵达的快递点咯。");
 		if(marker.getTitle().equals("冰临城下"))
 			markerText.setText("一家冷饮店，类似于清卟茶园。");
+		if(marker.getTitle().equals("美阁"))
+			markerText.setText("所以说胡说乱编什么的臣妾果然还是做不到的。");
+		if(marker.getTitle().equals("京东快递"))
+			markerText.setText("京东快递点，如题咯。");
+		if(marker.getTitle().equals("悦生活"))
+			markerText.setText("嗯..嗯...就(wo)那(bu)样(zhi)吧(dao)。");
+		if(marker.getTitle().equals("西子正装"))
+			markerText.setText("没去过。。所以就写不出来咯 - - ");
+		if(marker.getTitle().equals("儿画工作室"))
+			markerText.setText("儿画工作室，那儿似乎还设计明信片？！。");
+		if(marker.getTitle().equals("圆通速递"))
+			markerText.setText("圆通的快递点咯。");
 		return false;
 	}
 	private void updateLocation(double latitude, double longtitude) {
