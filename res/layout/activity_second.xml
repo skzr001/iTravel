@@ -68,6 +68,6 @@
          android:layout_toLeftOf="@+id/LocationButton"
          android:layout_toRightOf="@+id/keyWord"
          android:layout_weight="1"
-         android:background="@drawable/searchbutton" />
+         android:background="@drawable/serachbutton" />
    
 </RelativeLayout>
