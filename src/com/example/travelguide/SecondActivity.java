@@ -488,30 +488,30 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
                 } else {
                 	LocationFuda=1;
 //                	showToast("您已进入该区域");
-                	AlertDialog.Builder dialog=new AlertDialog.Builder(SecondActivity.this);
-                	dialog.setTitle("提示信息");
-                	dialog.setMessage("是否收听音频介绍");
-                	dialog.setCancelable(false);
-                	dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
-							Intent intent1=new Intent();
-							intent1.putExtra("num",store);
-							intent1.setClass(SecondActivity.this, MusicActivity.class);
-							startActivity(intent1);
-						}
-					});
-                	dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
-							
-						}
-					});
-                	dialog.show();
+//                	AlertDialog.Builder dialog=new AlertDialog.Builder(SecondActivity.this);
+//                	dialog.setTitle("提示信息");
+//                	dialog.setMessage("是否收听音频介绍");
+//                	dialog.setCancelable(false);
+//                	dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//						
+//						@Override
+//						public void onClick(DialogInterface dialog, int which) {
+//							// TODO Auto-generated method stub
+//							Intent intent1=new Intent();
+//							intent1.putExtra("num",store);
+//							intent1.setClass(SecondActivity.this, MusicActivity.class);
+//							startActivity(intent1);
+//						}
+//					});
+//                	dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//						
+//						@Override
+//						public void onClick(DialogInterface dialog, int which) {
+//							// TODO Auto-generated method stub
+//							
+//						}
+//					});
+//                	dialog.show();
                 }
  
             }
@@ -724,8 +724,32 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		}
 	}
 	//
+	protected double dis[][]= new double[26][3];
+	private Intent intent_broadcast[]=new Intent[26];
 	
+	Intent intentTest=new Intent();
 	private void addMarkersToMap() {
+		
+//		for(int i=1;i<26;i++){
+//			intent_broadcast[1].putExtra("num",i);
+//			intent_broadcast[1].setClass(SecondActivity.this, MusicActivity.class);
+//		}
+//	
+//		dis[1][1]=26.05124;		dis[1][2]=119.19283;intent_broadcast[1].putExtra("num",1);intent_broadcast[1].setClass(SecondActivity.this, MusicActivity.class);//电脑之家
+//		dis[2][1]=26.050908;	dis[2][2]=119.19187;//千亿美发
+//		dis[3][1]=26.050932;	dis[3][2]=119.191784;//花样年华
+//		dis[4][1]=26.05182;		dis[4][2]=119.191677;//圆通快递
+//		dis[5][1]=26.052002;	dis[5][2]=119.191704;//意祥驾校
+//		dis[6][1]=26.052103;	dis[6][2]=119.191725;//知发者
+//		dis[7][1]=26.052171; 	dis[7][2]=119.191816;//小春花屋
+//		dis[8][1]=26.052171;	dis[8][2]=119.191913;//福伯烧仙草
+//		dis[9][1]=26.051062;	dis[9][2]=119.192573;//中国移动
+//		dis[10][1]=26.051067;	dis[10][2]=119.192433;//万家超市
+//		dis[11][1]=26.051067;	dis[11][2]=119.192433;//洗衣店
+//		dis[12][1]=26.051241;	dis[12][2]=119.191629;//塞亚数码
+//		
+		
+		
 //   	 	LatLng latLng = new LatLng(26.05124,119.19283);//电脑之家
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);	
@@ -735,7 +759,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //		
-//		latLng = new LatLng(26.050908,119.19187);
+//		latLng = new LatLng(26.050908,119.19187);//千亿美发
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -744,7 +768,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //		
-//		latLng = new LatLng(26.050932,119.191784);
+//		latLng = new LatLng(26.050932,119.191784);//花样年华
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -753,7 +777,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //		
-//		latLng = new LatLng(26.05182,119.191677);
+//		latLng = new LatLng(26.05182,119.191677);//圆通快递
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -762,7 +786,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //		
-//		latLng = new LatLng(26.052002,119.191704);
+//		latLng = new LatLng(26.052002,119.191704);//益祥驾校
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -771,7 +795,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //		
-//		latLng = new LatLng(26.052103,119.191725);
+//		latLng = new LatLng(26.052103,119.191725);//知发者
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -780,7 +804,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //		
-//		latLng = new LatLng(26.052171,119.191816);
+//		latLng = new LatLng(26.052171,119.191816);//小春花屋
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -789,7 +813,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //				
-//		latLng = new LatLng(26.052171,119.191913);
+//		latLng = new LatLng(26.052171,119.191913);//福伯烧仙草
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -798,7 +822,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //		
-//		latLng = new LatLng(26.052195,119.192122);
+//		latLng = new LatLng(26.052195,119.192122);//移动
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -807,7 +831,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //		
-//		latLng = new LatLng(26.051906,119.191682);
+//		latLng = new LatLng(26.051906,119.191682);//万家
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -816,7 +840,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //		
-//		latLng = new LatLng(26.051067,119.192433);
+//		latLng = new LatLng(26.051067,119.192433);//洗衣店
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -825,7 +849,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //				.strokeColor(Color.RED);
 //		mCircle = aMap.addCircle(circleOptions);
 //		
-//		latLng = new LatLng(26.051241,119.191629);
+//		latLng = new LatLng(26.051241,119.191629);//塞亚数码
 ////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 ////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
 //		circleOptions = new CircleOptions();
@@ -835,7 +859,10 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //		mCircle = aMap.addCircle(circleOptions);
 		
 						/*福大B区*/
-   	 	
+		
+		intentTest.putExtra("num",1);
+		intentTest.setClass(SecondActivity.this, MusicActivity.class);
+		
 		LatLng latLng = new LatLng(26.051125,119.192069);
 		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 				latLng.longitude, 170, 1000 * 60 * 30, mPendingIntent);
@@ -956,6 +983,16 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             if (amapLocation.getAMapException().getErrorCode() == 0) {
             	updateLocation(amapLocation.getLatitude(), amapLocation.getLongitude());
             	 LatLng latLng = new LatLng(amapLocation.getLatitude(),amapLocation.getLongitude());
+            	 
+//            	 for(int i=1;i<26;i++){
+//            			 LatLng endLatlng=new LatLng(dis[i][1],dis[i][2]);
+//            			 if(AMapUtils.calculateLineDistance(latLng, endLatlng)<=12){
+//            				 startActivity(intent_broadcast[i]);
+//            			 }
+//            	 }
+            	 
+
+            		 
             	 mm=amapLocation.getLatitude();
             	 nn=amapLocation.getLongitude();
             	 instant_lat=amapLocation.getLatitude();
@@ -984,6 +1021,10 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             	 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
             	 showToast("您已在目标景区");
             	 }
+            	 LatLng endLatlng=new LatLng(26.051125,119.192069);
+            	 if(AMapUtils.calculateLineDistance(latLng, endLatlng)<=1000){
+    				 startActivity(intentTest);
+    			 }
             }
         }
     }

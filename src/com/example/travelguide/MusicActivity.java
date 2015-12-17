@@ -17,6 +17,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.SeekBar;
 
+import com.example.travelguide.until.ToastUtil;
+
+import android.widget.Toast;
+
 
 
 public class MusicActivity extends Activity {
@@ -56,7 +60,9 @@ public class MusicActivity extends Activity {
             
         }  
 	};
-	
+	private void showToast(String message) {
+		ToastUtil.show(MusicActivity.this, message);
+	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -73,8 +79,25 @@ public class MusicActivity extends Activity {
 		//如果未绑定，则进行绑定
 		if(!mBound){
 			bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
+		}	
+		
+		Intent intent_audio_num = getIntent();
+		Bundle bundle_audio_num = intent_audio_num.getExtras();  
+		int audio_num=bundle_audio_num.getInt("num");
+		if(audio_num==1){
+			Intent intentTest=new Intent();
+			intentTest.putExtra("num", 1);
 		}
-			
+//		Intent service_num=new Intent();
+//		
+//		for(int i=1;i<26;i++){
+//			if(audio_num==i){
+//				Bundle mbundle = new Bundle();
+//				mbundle.putInt("musicNum", i);
+//				serviceIntent.putExtras(mbundle);
+//			}
+//		}	
+		
 		//初始化播放按钮
 		Button playButton = (Button)findViewById(R.id.playButton);
 		playButton.setOnClickListener(new OnClickListener(){
@@ -83,6 +106,7 @@ public class MusicActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub	
 				if(mBound){
+					mService.setId(2);
 					mService.play();
 				}			
 			}
@@ -142,7 +166,7 @@ public class MusicActivity extends Activity {
 		
 		//用来向UI线程传递进度的值
 		Bundle data = new Bundle();
-		
+
 		//更新UI间隔时间
 		int milliseconds = 100;
 		double progress;
