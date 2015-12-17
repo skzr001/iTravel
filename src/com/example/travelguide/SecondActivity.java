@@ -1,11 +1,13 @@
 package com.example.travelguide;
 import com.example.travelguide.until.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
+
 import android.os.Bundle;
 
 import com.amap.api.location.AMapLocation;
@@ -98,7 +100,10 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	
 	
 	private AMapNavi mAMapNavi;
-    private int sendnum=0;
+    private int sendnum1=0;
+    private int sendnum2=0;
+    private int sendnum3=0;
+    private int sendnum4=0;
 	// 起点终点坐标
 	private double mm=0,nn=0;
 	private double instant_lat=0,instant_lng=0;
@@ -154,24 +159,37 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		
 		Intent intent_num1 = getIntent();
 		Bundle bundle_num1 = intent_num1.getExtras();  
-		sendnum=bundle_num1.getInt("name1");
+		sendnum1=bundle_num1.getInt("name1");
+		if(sendnum1==3 || sendnum1==4) area=sendnum1;
 		
-		area=sendnum;
 		
 		Intent intent_num2 = getIntent();
 		Bundle bundle_num2 = intent_num2.getExtras();  
-		sendnum=bundle_num2.getInt("name2");
+		sendnum2=bundle_num2.getInt("name2");
+		if(sendnum2==3 || sendnum2==4) area=sendnum2;
+		
 		Intent intent_num3 = getIntent();
 		Bundle bundle_num3 = intent_num3.getExtras();  
-		sendnum=bundle_num3.getInt("name3");
+		sendnum3=bundle_num3.getInt("name3");
+		if(sendnum3==3 || sendnum3==4) area=sendnum3;
+		
+		
+		
 		Intent intent_accept = getIntent();           //创建一个接收意图
         Bundle bundle = intent_accept.getExtras();    //创建Bundle对象，用于接收Intent数据
 //        String name = bundle.getString("name");       //获取Intent的内容name
+       
         int numb1=0;
         int numb2=0;
+        int ss=0;
+        if(area==3) numb1 = bundle.getInt("number1");               //获取Intent的内容age
         
-        numb1 = bundle.getInt("number1");               //获取Intent的内容age
-        numb2 = bundle.getInt("number2");               //获取Intent的内容age
+        if(area==3) numb2 = bundle.getInt("number2");               //获取Intent的内容age
+        
+        if(area==4) numb1 = bundle.getInt("number5");               //获取Intent的内容age
+        
+        if(area==4) numb2 = bundle.getInt("number6");               //获取Intent的内容age
+       
 		
 		if(numb1!=0 &&numb2!=0)
 		{
@@ -271,12 +289,64 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 				m1=26.051241;
 				m2=119.191629;
 			}
+			else if(numb1==41)  
+			{
+				m1=26.051058;
+				m2=119.190722;
+			}
+			else if(numb1==42)  
+			{
+				m1=26.050947;
+				m2=119.190829;
+			}
+			else if(numb1==43)  
+			{
+				m1= 26.05085;
+				m2=119.190862;
+			}
+			else if(numb1==44)  
+			{
+				m1=26.050754;
+				m2=119.190878;
+			}
+			else if(numb1==45)  
+			{
+				m1=26.050677;
+				m2=119.190894;
+			}
+			else if(numb1==46)  
+			{
+				m1=26.050571;
+				m2=119.190915;
+			}
+			else if(numb1==47)  
+			{
+				m1=26.050474;
+				m2=119.190937;
+			}
+			else if(numb1==48)  
+			{
+				m1=26.050392;
+				m2=119.190926;
+			}
+			else if(numb1==49)  
+			{
+				m1=26.050296;
+				m2=119.191028;
+			}
+			else if(numb1==410)  
+			{
+				m1=26.050132;
+				m2=119.191028;
+			}
 			
 			
 			else if(numb1==100)  
 			{
-				mm = bundle.getDouble("number3");               //获取Intent的内容age
-		        nn = bundle.getDouble("number4");               //获取Intent的内容age
+				if(area==3) mm = bundle.getDouble("number3");               //获取Intent的内容age
+				if(area==3) nn = bundle.getDouble("number4");               //获取Intent的内容age
+				if(area==4) mm = bundle.getDouble("number7");               //获取Intent的内容age
+				if(area==4) nn = bundle.getDouble("number8");               //获取Intent的内容age
 				m1=mm;
 				m2=nn;
 				
@@ -345,7 +415,56 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 				n1=26.051241;
 				n2=119.191629;
 			}
-			
+			else if(numb2==41)  
+			{
+				n1=26.051058;
+				n2=119.190722;
+			}
+			else if(numb2==42)  
+			{
+				n1=26.050947;
+				n2=119.190829;
+			}
+			else if(numb2==43)  
+			{
+				n1= 26.05085;
+				n2=119.190862;
+			}
+			else if(numb2==44)  
+			{
+				n1=26.050754;
+				n2=119.190878;
+			}
+			else if(numb2==45)  
+			{
+				n1=26.050677;
+				n2=119.190894;
+			}
+			else if(numb2==46)  
+			{
+				n1=26.050571;
+				n2=119.190915;
+			}
+			else if(numb2==47)  
+			{
+				n1=26.050474;
+				n2=119.190937;
+			}
+			else if(numb2==48)  
+			{
+				n1=26.050392;
+				n2=119.190926;
+			}
+			else if(numb2==49)  
+			{
+				n1=26.050296;
+				n2=119.191028;
+			}
+			else if(numb2==410)  
+			{
+				n1=26.050132;
+				n2=119.191028;
+			}
 			
 			
 			mNaviStart = new NaviLatLng(m1,m2);
@@ -368,7 +487,9 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 	    Button btn = (Button)findViewById(R.id.button1);
 		btn.setOnClickListener(new OnClickListener() {
 		public void onClick(View v) {
-			if (sendnum==3) {
+			
+			if (area==3) {
+				
 				Intent intent = new Intent();
 		           intent.putExtra("dangqian1",mm);    
 	               intent.putExtra("dangqian2",nn);
@@ -376,8 +497,10 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 				  // intent.setClass(SecondActivity.this,ThirdActivity.class);
 				   startActivity(intent);
 				   finish();
+				   
 			}
-			           else {
+			          if(area==4) {
+			        	 
 			        	   Intent intent = new Intent();
 				           intent.putExtra("dangqian1",mm);    
 			               intent.putExtra("dangqian2",nn);
@@ -484,11 +607,11 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 //                showToast("测试成功");
                 if (status == 0) {
                 	LocationFuda=0;
-//                	showToast("您不在该区域");
+                	showToast("您不在该区域");
                 } else {
                 	LocationFuda=1;
-//                	showToast("您已进入该区域");
-                	AlertDialog.Builder dialog=new AlertDialog.Builder(SecondActivity.this);
+               	showToast("您已进入该区域");
+/*                	AlertDialog.Builder dialog=new AlertDialog.Builder(SecondActivity.this);
                 	dialog.setTitle("提示信息");
                 	dialog.setMessage("是否收听音频介绍");
                 	dialog.setCancelable(false);
@@ -511,7 +634,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 							
 						}
 					});
-                	dialog.show();
+                	dialog.show();*/
                 }
  
             }
@@ -870,10 +993,13 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		addMarker(nc.圆通速递,"圆通速递","yuantongsu.png",0.9f,0.5f);//
 		addMarker(nc.儿画工作室,"儿画工作室","erhua.png",0.9f,0.5f);//
 		addMarker(nc.西子正装,"西子正装","xizi.png",0.9f,0.5f);//
-		addMarker(nc.悦生活,"悦生活","yueshenghuo.png",0.9f,0.5f);//
+		addMarker(nc.悦生活,"悦生活","1.png",0.5f,0.5f);//
 		addMarker(nc.京东快递,"京东快递","jindong.png",0.9f,0.5f);//
 		addMarker(nc.美阁,"美阁","meige.png",0.9f,0.5f);//
 		addMarker(nc.韵达快递,"韵达快递","yunda.png",0.9f,0.5f);//
+		addMarker(nc.万嘉超市4,"万嘉超市（4）区","wj4.png",0.9f,0.5f);//
+		addMarker(nc.诺曼服饰正装,"诺曼服饰正装","nuoman.png",0.9f,0.5f);//
+		addMarker(nc.顺丰快递,"顺丰快递","shunfeng.png",0.9f,0.5f);//
 		}
 	public void addMarker(LatLng a,String title,String picture,float s1,float s2){
 		aMap.addMarker(new MarkerOptions().anchor(s1, s2).icon(BitmapDescriptorFactory.fromAsset(picture))
@@ -936,6 +1062,12 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 			markerText.setText("儿画工作室，那儿似乎还设计明信片？！。");
 		if(marker.getTitle().equals("圆通速递"))
 			markerText.setText("圆通的快递点咯。");
+		if(marker.getTitle().equals("顺丰快递"))
+			markerText.setText("顺丰的快递点咯。");
+		if(marker.getTitle().equals("万嘉超市（4）区"))
+			markerText.setText("万嘉超市的4区店。");
+		if(marker.getTitle().equals("诺曼服饰正装"))
+			markerText.setText("诺曼服饰。");
 		return false;
 	}
 	private void updateLocation(double latitude, double longtitude) {
@@ -969,8 +1101,14 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             	 if(LocationFuda==0)
             	 {
             		 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
+            		 if(area==3)
+            		 {
             		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fudathree,18));
+            		 }
+            		 if(area==4)
+            		 {
             		 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Fudafour,18));
+            		 }
 
             		 
             		 showToast("请进入景区再进行定位");

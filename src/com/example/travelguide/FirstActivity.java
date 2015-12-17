@@ -3,6 +3,7 @@ package com.example.travelguide;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.Test;
 import android.os.Bundle;
 
 import com.amap.api.maps2d.AMap;
@@ -15,6 +16,9 @@ import com.amap.api.maps2d.MapView;
 
 
 
+import com.example.travelguide.until.ToastUtil;
+
+import android.R.string;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
@@ -27,13 +31,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class FirstActivity extends Activity {
 	private Spinner spinner;
 	private List<String> data_list;
 	private ArrayAdapter<String> arr_adapter;
 	private int sendnum=0;
-	
+	private String text;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,16 +58,16 @@ public class FirstActivity extends Activity {
         arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //加载适配器
         spinner.setAdapter(arr_adapter);
-        String text = (String) spinner.getSelectedItem();
-        if(text.equals("福州大学生活三区"))
-        {
-        	sendnum=3;
-        }
-        else sendnum=4;
+       
 		Button btn = (Button)findViewById(R.id.searchText);
 		btn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v){
-				
+				 text = (String) spinner.getSelectedItem();
+				 if(text.equals("福州大学生活四区"))
+			        {
+			        	sendnum=4;
+			        }
+			        else sendnum=3;
 				/* 新建一个Intent对象 */
 		        Intent intent = new Intent();
 		        intent.putExtra("name1",sendnum);    
