@@ -870,7 +870,7 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		addMarker(nc.圆通速递,"圆通速递","yuantongsu.png",0.9f,0.5f);//
 		addMarker(nc.儿画工作室,"儿画工作室","erhua.png",0.9f,0.5f);//
 		addMarker(nc.西子正装,"西子正装","xizi.png",0.9f,0.5f);//
-		addMarker(nc.悦生活,"悦生活","yueshenghuo.png",0.9f,0.5f);//
+		addMarker(nc.悦生活,"悦生活","1.png",0.5f,0.5f);//
 		addMarker(nc.京东快递,"京东快递","jindong.png",0.9f,0.5f);//
 		addMarker(nc.美阁,"美阁","meige.png",0.9f,0.5f);//
 		addMarker(nc.韵达快递,"韵达快递","yunda.png",0.9f,0.5f);//
