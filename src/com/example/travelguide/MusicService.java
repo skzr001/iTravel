@@ -53,7 +53,12 @@ public class MusicService extends Service {
 		}
         
     }  
-  
+	public void setId(int Id){
+		if(Id==1) mediaPlayer=MediaPlayer.create(getApplicationContext(), R.raw.music);
+//		else if(Id==2) mediaPlayer=MediaPlayer.create(getApplicationContext(), R.raw.music2);
+		
+			
+	}
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub

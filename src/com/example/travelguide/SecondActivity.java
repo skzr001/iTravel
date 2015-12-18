@@ -847,126 +847,237 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
 		}
 	}
 	//
+	protected double dis[][]= new double[26][3];
+	private Intent intent_broadcast[]=new Intent[26];
+	
+	Intent intentTest=new Intent();
+	
 	
 	private void addMarkersToMap() {
-//   	 	LatLng latLng = new LatLng(26.05124,119.19283);//电脑之家
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);	
-//		CircleOptions circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 100))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//		
-//		latLng = new LatLng(26.050908,119.19187);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//		
-//		latLng = new LatLng(26.050932,119.191784);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//		
-//		latLng = new LatLng(26.05182,119.191677);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//		
-//		latLng = new LatLng(26.052002,119.191704);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//		
-//		latLng = new LatLng(26.052103,119.191725);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//		
-//		latLng = new LatLng(26.052171,119.191816);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//				
-//		latLng = new LatLng(26.052171,119.191913);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//		
-//		latLng = new LatLng(26.052195,119.192122);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//		
-//		latLng = new LatLng(26.051906,119.191682);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//		
-//		latLng = new LatLng(26.051067,119.192433);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
-//		
-//		latLng = new LatLng(26.051241,119.191629);
-////		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-////				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
-//		circleOptions = new CircleOptions();
-//		circleOptions.center(latLng).radius(10)
-//				.fillColor(Color.argb(180, 224, 171, 10))
-//				.strokeColor(Color.RED);
-//		mCircle = aMap.addCircle(circleOptions);
 		
-						/*福大B区*/
-   	 	
-		LatLng latLng = new LatLng(26.051125,119.192069);
+//		for(int i=1;i<26;i++){
+//		intent_broadcast[1].putExtra("num",i);
+//		intent_broadcast[1].setClass(SecondActivity.this, MusicActivity.class);
+//	}
+//
+//	dis[1][1]=26.05124;		dis[1][2]=119.19283;intent_broadcast[1].putExtra("num",1);intent_broadcast[1].setClass(SecondActivity.this, MusicActivity.class);//电脑之家
+//	dis[2][1]=26.050908;	dis[2][2]=119.19187;//千亿美发
+//	dis[3][1]=26.050932;	dis[3][2]=119.191784;//花样年华
+//	dis[4][1]=26.05182;		dis[4][2]=119.191677;//圆通快递
+//	dis[5][1]=26.052002;	dis[5][2]=119.191704;//意祥驾校
+//	dis[6][1]=26.052103;	dis[6][2]=119.191725;//知发者
+//	dis[7][1]=26.052171; 	dis[7][2]=119.191816;//小春花屋
+//	dis[8][1]=26.052171;	dis[8][2]=119.191913;//福伯烧仙草
+//	dis[9][1]=26.051062;	dis[9][2]=119.192573;//中国移动
+//	dis[10][1]=26.051067;	dis[10][2]=119.192433;//万家超市
+//	dis[11][1]=26.051067;	dis[11][2]=119.192433;//洗衣店
+//	dis[12][1]=26.051241;	dis[12][2]=119.191629;//塞亚数码
+		
+		
+   	 	LatLng latLng = new LatLng(26.05124,119.19283);//电脑之家
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);	
+		CircleOptions circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 100))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.050908,119.19187);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.050932,119.191784);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.05182,119.191677);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.052002,119.191704);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.052103,119.191725);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.052171,119.191816);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+				
+		latLng = new LatLng(26.052171,119.191913);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.052195,119.192122);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.051906,119.191682);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.051067,119.192433);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.051241,119.191629);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.050947,119.190829);//顺丰快递
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);		
+		
+		latLng = new LatLng(26.05085,119.190862);//美阁
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);	
+		
+		latLng = new LatLng(26.050754,119.190878);//京东快递
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.050677,119.190894);//西子正装
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.050571,119.190915);//儿画工作室
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.050474,119.190937);//韵达快递
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.050296,119.191028);//诺曼服饰
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		latLng = new LatLng(26.050132,119.191028);//悦生活
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(10)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		/*福大B区*/
+		intentTest.putExtra("num",1);
+		intentTest.setClass(SecondActivity.this, MusicActivity.class);
+		
+		latLng=new LatLng(26.051554,119.192267);
 		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
 				latLng.longitude, 170, 1000 * 60 * 30, mPendingIntent);
-		CircleOptions circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(170)
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(150)
 				.fillColor(Color.argb(180, 224, 171, 10))
 				.strokeColor(Color.RED);
 		mCircle = aMap.addCircle(circleOptions);//福大三区
+		
+		/*福大四区*/
+		latLng = new LatLng(26.050508,119.189971);
+//		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
+//				latLng.longitude, 10, 1000 * 60 * 30, mPendingIntent);
+		circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius(100)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = aMap.addCircle(circleOptions);
+		
+		
 		Nameclass nc=new Nameclass();
 		
 		MarkerOptions option = new MarkerOptions();
@@ -1097,6 +1208,23 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             	 LatLng Fudafour=new LatLng(26.050677,119.190894);
 //     			addMarker(26.050908,119.19187,"千艺美发","1.png");//
 //            	 四区  119.190894,26.050677
+            	 /**
+            	  * 三区四区的判别
+            	  */
+            	 LatLng D4=new LatLng(26.050508,119.189971);
+            	 LatLng D3=new LatLng(26.051554,119.192267);
+    			 if(AMapUtils.calculateLineDistance(latLng, D4)<=100){
+    				 area=4;
+    			 }
+    			 else if(AMapUtils.calculateLineDistance(latLng, D3)<=100){
+    				 area=3;
+    			 }
+//            	 for(int i=1;i<26;i++){
+//            			 LatLng endLatlng=new LatLng(dis[i][1],dis[i][2]);
+//            			 if(AMapUtils.calculateLineDistance(latLng, endLatlng)<=12){
+//            				 startActivity(intent_broadcast[i]);
+//            			 }
+//            	 }
             	 
             	 if(LocationFuda==0)
             	 {
@@ -1122,6 +1250,10 @@ OnMapLoadedListener, OnClickListener, TextWatcher, InfoWindowAdapter, OnPoiSearc
             	 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
             	 showToast("您已在目标景区");
             	 }
+            	 LatLng endLatlng=new LatLng(26.051125,119.192069);
+            	 if(AMapUtils.calculateLineDistance(latLng, endLatlng)<=1000){
+    				 startActivity(intentTest);
+    			 }
             }
         }
     }

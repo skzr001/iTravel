@@ -23,17 +23,20 @@ public final class R {
     public static final class drawable {
         public static final int background=0x7f020000;
         public static final int begin=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int icon=0x7f020003;
-        public static final int local=0x7f020004;
-        public static final int location_marker=0x7f020005;
-        public static final int roadbutton=0x7f020006;
-        public static final int serachbutton=0x7f020007;
-        public static final int text_search=0x7f020008;
-        public static final int text_search_default=0x7f020009;
-        public static final int text_search_pressed=0x7f02000a;
-        public static final int text_search_selected=0x7f02000b;
-        public static final int yes=0x7f02000c;
+        public static final int bg=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int icon=0x7f020004;
+        public static final int local=0x7f020005;
+        public static final int location_marker=0x7f020006;
+        public static final int play=0x7f020007;
+        public static final int roadbutton=0x7f020008;
+        public static final int serachbutton=0x7f020009;
+        public static final int stop=0x7f02000a;
+        public static final int text_search=0x7f02000b;
+        public static final int text_search_default=0x7f02000c;
+        public static final int text_search_pressed=0x7f02000d;
+        public static final int text_search_selected=0x7f02000e;
+        public static final int yes=0x7f02000f;
     }
     public static final class id {
         public static final int LocationButton=0x7f09000f;

@@ -74,7 +74,17 @@ public class MusicActivity extends Activity {
 		if(!mBound){
 			bindService(serviceIntent, mConnection, Context.BIND_AUTO_CREATE);
 		}
-			
+		
+		Intent intent_audio_num = getIntent();
+		Bundle bundle_audio_num = intent_audio_num.getExtras();  
+		int audio_num=bundle_audio_num.getInt("num");
+//		for(int i=1;i<26;i++){
+//			if(audio_num==i){
+//				Bundle mbundle = new Bundle();
+//				mbundle.putInt("musicNum", i);
+//				serviceIntent.putExtras(mbundle);
+//			}
+//		}		
 		//初始化播放按钮
 		Button playButton = (Button)findViewById(R.id.playButton);
 		playButton.setOnClickListener(new OnClickListener(){
@@ -83,6 +93,7 @@ public class MusicActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub	
 				if(mBound){
+					mService.setId(1);
 					mService.play();
 				}			
 			}
