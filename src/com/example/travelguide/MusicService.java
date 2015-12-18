@@ -63,17 +63,12 @@ public class MusicService extends Service {
         
     }  
 
-//	public int onStartCommand(Intent intent,int flag,int startId){
-//        super.onStartCommand(intent, flag, startId);
-//        Bundle bundle = (Bundle)intent.getExtras();
-//        int musicNum=bundle.getInt("musicNum");
-//        if(musicNum==1) mediaPlayer=MediaPlayer.create(getApplicationContext(), R.raw.music);
-//        return startId;
-//    }
 
 	public void setId(int Id){
+
 		if(Id==1) mediaPlayer=MediaPlayer.create(getApplicationContext(), R.raw.music);
-		else if(Id==2) mediaPlayer=MediaPlayer.create(getApplicationContext(), R.raw.music2);
+//		else if(Id==2) mediaPlayer=MediaPlayer.create(getApplicationContext(), R.raw.music2);
+
 		
 			
 	}

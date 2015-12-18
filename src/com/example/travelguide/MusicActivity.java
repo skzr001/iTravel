@@ -88,16 +88,20 @@ public class MusicActivity extends Activity {
 			Intent intentTest=new Intent();
 			intentTest.putExtra("num", 1);
 		}
+
 //		Intent service_num=new Intent();
 //		
+
 //		for(int i=1;i<26;i++){
 //			if(audio_num==i){
 //				Bundle mbundle = new Bundle();
 //				mbundle.putInt("musicNum", i);
 //				serviceIntent.putExtras(mbundle);
 //			}
+
 //		}	
-		
+//		}		
+
 		//初始化播放按钮
 		Button playButton = (Button)findViewById(R.id.playButton);
 		playButton.setOnClickListener(new OnClickListener(){

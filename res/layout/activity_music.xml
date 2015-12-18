@@ -2,36 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
-    android:orientation="vertical">
-    
-	<TextView 
-	    android:layout_width="wrap_content"
-    	android:layout_height="wrap_content" 
-	    android:text="play"/>    
-	    
-	
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    >
 	<Button 
 	    android:id="@+id/playButton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="play" 
+	    android:layout_width="50dp"
+	    android:layout_height="50dp"
+	    android:background="@drawable/play"
 	 />
 	
 	<Button 
 	    android:id="@+id/pauseButton"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="pause" 
+	    android:layout_width="100dp"
+	    android:layout_height="50dp"
+	    android:background="@drawable/stop"
 	 />
-	
-	 <SeekBar
-        android:id="@+id/seekbar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:max="100"
-        android:progress="10"
-        />
+
+	<SeekBar
+	    android:id="@+id/seekbar"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="20dp"
+	    android:layout_marginRight="20dp"
+	    android:max="100"
+	    android:progress="10" />
 
 </LinearLayout>

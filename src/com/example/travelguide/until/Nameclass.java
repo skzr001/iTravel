@@ -28,6 +28,7 @@ public class Nameclass {
 	public LatLng 儿画工作室 =new LatLng(26.050571,119.190915);
 	public LatLng 韵达快递 =new LatLng(26.050474,119.190937);
 	public LatLng 圆通速递 =new LatLng(26.050392,119.190926);
+	public LatLng 万嘉超市4  =new LatLng(26.051058,119.190722);
 	public LatLng 悦生活  =new LatLng(26.050132,119.191028);
-	    
+	public LatLng 诺曼服饰正装  =new LatLng(26.050296,119.191028);
 }

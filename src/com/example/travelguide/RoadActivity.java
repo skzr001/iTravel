@@ -77,6 +77,7 @@ public class RoadActivity extends Activity{
         
         
         
+        
         //适配器
         arr_adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data_list);
         //设置样式
@@ -117,10 +118,10 @@ public class RoadActivity extends Activity{
 				String s0 = "我的位置";
  				String s1 = "万家超市";
 				String s2 = "顺丰快递";
-				String s3 = "美阁 ";
-				String s4 = "京东快递 ";
+				String s3 = "美阁";
+				String s4 = "京东快递";
 				String s5 = "西子正装";
-				String s6 = "儿画工作室 ";
+				String s6 = "儿画工作室";
 				String s7 = "韵达快递";
 				String s8 = "圆通速递";
 				String s9 = "诺曼服饰正装";
@@ -224,10 +225,10 @@ public class RoadActivity extends Activity{
 				
 				/* 新建一个Intent对象 */
 		        Intent intent = new Intent();
-		        intent.putExtra("number1",a);    
-		        intent.putExtra("number2",b);
-		        intent.putExtra("number3",mm);
-		        intent.putExtra("number4",nn);
+		        intent.putExtra("number5",a);    
+		        intent.putExtra("number6",b);
+		        intent.putExtra("number7",mm);
+		        intent.putExtra("number8",nn);
 		        intent.putExtra("name3",4);    
 		        /* 指定intent要启动的类 */
 		        intent.setClass(RoadActivity.this, SecondActivity.class);
